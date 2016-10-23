@@ -189,7 +189,7 @@
         // The other popup shapes
         var popup = null;
         // Position the main chart
-        myChart.setBounds(50, 200, 800, 900);
+        myChart.setBounds(50, 100, 800, 900);
       
         // Add the main chart axes
         var x = myChart.addCategoryAxis("x", "Criterion");
@@ -208,11 +208,16 @@
 
         myChart.draw();
 
+        // setTimeout(function () {
+        // svg.selectAll("circle")
+        // .attr("opacity", 0.2)
+        // .attr("r", 100);
+        // }, 100);
+
         setTimeout(function () {
         svg.selectAll("circle")
-        .attr("opacity", 0.2)
-        .attr("r", 100);
-        }, 100);
+        .attr("opacity", 0.2);
+        }, 50);
     });
 
 
@@ -247,15 +252,11 @@
                     row['Criterion'] = reviewdata.x_labels[j] ;
                     row['Reviewer'] = reviewdata.z_labels[k];
                     row['Score'] = raw_review_data[i][j][k].score ;
-                    // console.log(row);
                     processed_scores_per_student.push(row);
                 }
                 // debugger;
-                // console.table(processed_scores_per_student);
                 processed_reviewer_data_per_student[reviewdata.y_labels[i]] = processed_scores_per_student ;
             }
-            // debugger;
-            
         }
   
         console.log(processed_reviewer_data_per_student);
@@ -278,7 +279,6 @@
                 num = i + 1;
             }
             avg = sum / num ;
-            // debugger;
             average_per_criterion[key] = avg ;
             reviewer_criteria_data_clone.content[criterion_num].push({"average": avg});
             criterion_num = criterion_num + 1 ;

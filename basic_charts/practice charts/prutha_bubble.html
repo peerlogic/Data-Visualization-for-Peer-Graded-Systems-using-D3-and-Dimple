@@ -11,17 +11,17 @@
 <body>
 <script type="text/javascript">
 
-	var student_data = {
+    var student_data = {
 
-	"x_labels" : ["Criterion 1", "Criterion 2", "Criterion 3", "Criterion 4","Criterion 5", "Criterion 6", "Criterion 7"],
-	"y_labels" : ["Student 1", "Student 2", "Student 3", "Student 4","Student 5","Student 6", "Student 7"],
-	"color_scheme": {
-		"color_1" : "",
-		"color_2" : "", 
-		"color_3" : ""
+    "x_labels" : ["Criterion 1", "Criterion 2", "Criterion 3", "Criterion 4","Criterion 5", "Criterion 6", "Criterion 7"],
+    "y_labels" : ["Student 1", "Student 2", "Student 3", "Student 4","Student 5","Student 6", "Student 7"],
+    "color_scheme": {
+        "color_1" : "",
+        "color_2" : "", 
+        "color_3" : ""
     },
     "mean_score_input" : "false",
-	"content": [
+    "content": [
         [{
             "score": 60,
             "mean_score": "1"
@@ -186,7 +186,7 @@
   // Add a simple SVG element to the body of this document
     var svg = dimple.newSvg("body", 800, 600);
     var data;
-	var x_labels = [] ;
+    var x_labels = [] ;
     var y_labels = [] ;
     var content = [] ;
     var scores_per_student = {} ;
@@ -195,7 +195,7 @@
     var colors = [] 
 
     // d3.json("student_data.json", function(data){
-    	// debugger;
+        // debugger;
         x_labels = student_data.x_labels;
         y_labels = student_data.y_labels;
         colors.push(student_data.color_scheme.color_1);
@@ -207,21 +207,21 @@
      //    variance_per_student =  get_variance_per_student(scores_per_student, average_per_student) ;
 
         // The main chart
-      	// var myChart = new dimple.chart(svg, studentData);
-      	// The chart to show in a tooltip
-      	var tipChart = null;
-      	// The other popup shapes
-      	var popup = null;
+        // var myChart = new dimple.chart(svg, studentData);
+        // The chart to show in a tooltip
+        var tipChart = null;
+        // The other popup shapes
+        var popup = null;
 
-      	// Position the main chart
-      	// myChart.setBounds(60, 40, 500, 320);
+        // Position the main chart
+        // myChart.setBounds(60, 40, 500, 320);
       
-      	// Add the main chart axes
-      	// var x = myChart.addCategoryAxis("x", x_labels);
-      	// var y = myChart.addCategoryAxis("y", y_labels);
-      	// var z = myChart.addMeasureAxis("z", scores_per_student);
-      	// var s = myChart.addSeries(null, dimple.plot.bubble);
-      	// myChart.draw();
+        // Add the main chart axes
+        // var x = myChart.addCategoryAxis("x", x_labels);
+        // var y = myChart.addCategoryAxis("y", y_labels);
+        // var z = myChart.addMeasureAxis("z", scores_per_student);
+        // var s = myChart.addSeries(null, dimple.plot.bubble);
+        // myChart.draw();
 
 
 

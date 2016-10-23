@@ -1,0 +1,21 @@
+{
+
+    "x_labels" : ["Criterion 1", "Criterion 2", "Criterion 3", "Criterion 4","Criterion 5" ],
+    "y_labels" : ["Student1", "Student2", "Student3", "Student4", "Student5", "Student6", "Student7"],
+    "content" :[
+        [ 
+            {"mean_score" : 50, "variance" : 217.5},
+            {"mean_score" : 50, "variance" : 9154.799999999997},
+            {"mean_score" : 50, "variance" : 23986.799999999996},
+            {"mean_score" : 50, "variance" : 44624.85},
+            {"mean_score" : 50, "variance" : 88406.30000000002},
+        ], 
+       [
+            {"mean_score" : 50, "variance" : 161152.5},
+            {"mean_score" : 50, "variance" : 278073},
+            {"mean_score" : 50, "variance" : 161152.5},
+            {"mean_score" : 50, "variance" : 278073},
+            {"mean_score" : 50, "variance" : 278073}
+       ]
+  ]
+}

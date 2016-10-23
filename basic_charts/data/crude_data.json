@@ -1,0 +1,266 @@
+   // var studentData = [
+      //   {"studentName" : "arya", "criterion" : "criterion1", "avgscores" : 38, "variance": 10}, 
+      //   {"studentName" : "arya", "criterion" : "criterion2", "avgscores" : 75.2, "variance":5.8}, 
+      //   {"studentName" : "arya", "criterion" : "criterion3", "avgscores" : 45.8, "variance": 4.5},  
+      //   {"studentName" : "arya", "criterion" : "criterion4", "avgscores" : 48, "variance":5.6},
+      //   {"studentName" : "arya", "criterion" : "criterion5", "avgscores" : 85.6, "variance":9},
+
+      //   {"studentName" : "jon", "criterion" : "criterion1", "avgscores" : 83, "variance":3.4},
+      //   {"studentName" : "jon", "criterion" : "criterion2", "avgscores" : 93, "variance":6.7},
+      //   {"studentName" : "jon", "criterion" : "criterion3", "avgscores" : 100, "variance":4.5},
+      //   {"studentName" : "jon", "criterion" : "criterion4", "avgscores" : 89, "variance":5.6},
+      //   {"studentName" : "jon", "criterion" : "criterion5", "avgscores" : 67, "variance":1.7},
+        
+      //   {"studentName" : "psinaik", "criterion" : "criterion1", "avgscores" : 67, "variance":4.7},
+      //   {"studentName" : "psinaik", "criterion" : "criterion2", "avgscores" : 88, "variance":9.9},
+      //   {"studentName" : "psinaik", "criterion" : "criterion3", "avgscores" : 67, "variance":2.3},
+      //   {"studentName" : "psinaik", "criterion" : "criterion4", "avgscores" : 56, "variance":1.5},
+      //   {"studentName" : "psinaik", "criterion" : "criterion5", "avgscores" : 97, "variance":5.6},
+        
+      //   {"studentName" : "sansa", "criterion" : "criterion1", "avgscores" : 65, "variance":2.5}, 
+      //   {"studentName" : "sansa", "criterion" : "criterion2", "avgscores" : 34, "variance":7.8},
+      //   {"studentName" : "sansa", "criterion" : "criterion3", "avgscores" : 36, "variance":4.5},
+      //   {"studentName" : "sansa", "criterion" : "criterion4", "avgscores" : 75.2, "variance":7.8}, 
+      //   {"studentName" : "sansa", "criterion" : "criterion5", "avgscores" : 51.2, "variance":2.0},
+        
+      //   {"studentName" : "bran", "criterion" : "criterion1", "avgscores" : 99, "variance":1.4},
+      //   {"studentName" : "bran", "criterion" : "criterion2", "avgscores" : 53, "variance":1.6},
+      //   {"studentName" : "bran", "criterion" : "criterion3", "avgscores" : 83, "variance":6.3},
+      //   {"studentName" : "bran", "criterion" : "criterion4", "avgscores" : 43, "variance":8.1},
+      //   {"studentName" : "bran", "criterion" : "criterion5", "avgscores" : 93, "variance":3.5},
+        
+      //   {"studentName" : "ned", "criterion" : "criterion1", "avgscores" : 12, "variance": 1.5},
+      //   {"studentName" : "ned", "criterion" : "criterion2", "avgscores" : 54, "variance": 15.6},
+      //   {"studentName" : "ned", "criterion" : "criterion3", "avgscores" : 14, "variance": 2.5},
+      //   {"studentName" : "ned", "criterion" : "criterion4", "avgscores" : 99, "variance": 5.6},
+      //   {"studentName" : "ned", "criterion" : "criterion5", "avgscores" : 90, "variance": 2.6}, 
+        
+      //   {"studentName" : "lyanna", "criterion" : "criterion1", "avgscores" : 43, "variance": 1.7},
+      //   {"studentName" : "lyanna", "criterion" : "criterion2", "avgscores" : 39, "variance": 4.7},
+      //   {"studentName" : "lyanna", "criterion" : "criterion3", "avgscores" : 90, "variance": 5.7},
+      //   {"studentName" : "lyanna", "criterion" : "criterion4", "avgscores" : 90, "variance": 1.2},
+      //   {"studentName" : "lyanna", "criterion" : "criterion5", "avgscores" : 90, "variance": 3.6}
+      // ];
+
+      // 6 students, 5 reviewers, 5 criterions
+      // If multiple reviewers award nearly same scores, indication of a good review
+      // Mutiple reviewers giving contrasting scores, bad review
+
+      // Ex 1: Bad review
+      // Ex 2 : Good review
+      // var studentReviewerData = [
+     
+      //   {"studentName" : "arya", "reviewer" : "r1", "criterion" : "criterion1", "scores" : 10}, 
+      //   {"studentName" : "arya", "reviewer" : "r2","criterion" : "criterion1", "scores" : 35}, 
+      //   {"studentName" : "arya", "reviewer" : "r3", "criterion" : "criterion1", "scores" : 100}, 
+      //   {"studentName" : "arya", "reviewer" : "r4","criterion" : "criterion1", "scores" : 12}, 
+      //   {"studentName" : "arya", "reviewer" : "r5", "criterion" : "criterion1", "scores" : 33}, 
+        
+      //   {"studentName" : "arya", "reviewer" : "r1", "criterion" : "criterion2", "scores" : 79}, 
+      //   {"studentName" : "arya", "reviewer" : "r2","criterion" : "criterion2", "scores" : 59}, 
+      //   {"studentName" : "arya", "reviewer" : "r3", "criterion" : "criterion2", "scores" : 80}, 
+      //   {"studentName" : "arya", "reviewer" : "r4","criterion" : "criterion2", "scores" : 80}, 
+      //   {"studentName" : "arya", "reviewer" : "r5", "criterion" : "criterion2", "scores" : 78}, 
+
+      //   {"studentName" : "arya", "reviewer" : "r1", "criterion" : "criterion3", "scores" : 43}, 
+      //   {"studentName" : "arya", "reviewer" : "r2","criterion" : "criterion3", "scores" : 37}, 
+      //   {"studentName" : "arya", "reviewer" : "r3", "criterion" : "criterion3", "scores" : 32}, 
+      //   {"studentName" : "arya", "reviewer" : "r4","criterion" : "criterion3", "scores" : 54}, 
+      //   {"studentName" : "arya", "reviewer" : "r5", "criterion" : "criterion3", "scores" : 63}, 
+       
+      //   {"studentName" : "arya", "reviewer" : "r1", "criterion" : "criterion4", "scores" : 43}, 
+      //   {"studentName" : "arya", "reviewer" : "r2","criterion" : "criterion4", "scores" : 48}, 
+      //   {"studentName" : "arya", "reviewer" : "r3", "criterion" : "criterion4", "scores" : 39}, 
+      //   {"studentName" : "arya", "reviewer" : "r4","criterion" : "criterion4", "scores" : 77}, 
+      //   {"studentName" : "arya", "reviewer" : "r5", "criterion" : "criterion4", "scores" : 33}, 
+
+      //   {"studentName" : "arya", "reviewer" : "r1", "criterion" : "criterion5", "scores" : 99}, 
+      //   {"studentName" : "arya", "reviewer" : "r2","criterion" : "criterion5", "scores" : 90}, 
+      //   {"studentName" : "arya", "reviewer" : "r3", "criterion" : "criterion5", "scores" : 63}, 
+      //   {"studentName" : "arya", "reviewer" : "r4","criterion" : "criterion5", "scores" : 93}, 
+      //   {"studentName" : "arya", "reviewer" : "r5", "criterion" : "criterion5", "scores" : 83}, 
+
+      //    {"studentName" : "lyanna", "reviewer" : "r1", "criterion" : "criterion1", "scores" : 35}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r2","criterion" : "criterion1", "scores" : 67}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r3", "criterion" : "criterion1", "scores" : 43}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r4","criterion" : "criterion1", "scores" : 78}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r5", "criterion" : "criterion1", "scores" : 99}, 
+
+      //   {"studentName" : "lyanna", "reviewer" : "r1", "criterion" : "criterion2", "scores" : 89}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r2","criterion" : "criterion2", "scores" : 22}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r3", "criterion" : "criterion2", "scores" : 33}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r4","criterion" : "criterion2", "scores" : 55}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r5", "criterion" : "criterion2", "scores" : 58}, 
+
+      //   {"studentName" : "lyanna", "reviewer" : "r1", "criterion" : "criterion3", "scores" : 90}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r2","criterion" : "criterion3", "scores" : 98}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r3", "criterion" : "criterion3", "scores" : 73}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r4","criterion" : "criterion3", "scores" : 56}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r5", "criterion" : "criterion3", "scores" : 45}, 
+       
+      //   {"studentName" : "lyanna", "reviewer" : "r1", "criterion" : "criterion4", "scores" : 80}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r2","criterion" : "criterion4", "scores" : 78}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r3", "criterion" : "criterion4", "scores" : 34}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r4","criterion" : "criterion4", "scores" : 78}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r5", "criterion" : "criterion4", "scores" : 45}, 
+
+      //   {"studentName" : "lyanna", "reviewer" : "r1", "criterion" : "criterion5", "scores" : 46}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r2","criterion" : "criterion5", "scores" : 47}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r3", "criterion" : "criterion5", "scores" : 89}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r4","criterion" : "criterion5", "scores" : 76}, 
+      //   {"studentName" : "lyanna", "reviewer" : "r5", "criterion" : "criterion5", "scores" : 90}, 
+
+
+      //   {"studentName" : "jon", "reviewer" : "r1", "criterion" : "criterion1", "scores" : 35}, 
+      //   {"studentName" : "jon", "reviewer" : "r2","criterion" : "criterion1", "scores" : 67}, 
+      //   {"studentName" : "jon", "reviewer" : "r3", "criterion" : "criterion1", "scores" : 43}, 
+      //   {"studentName" : "jon", "reviewer" : "r4","criterion" : "criterion1", "scores" : 78}, 
+      //   {"studentName" : "jon", "reviewer" : "r5", "criterion" : "criterion1", "scores" : 99}, 
+
+      //   {"studentName" : "jon", "reviewer" : "r1", "criterion" : "criterion2", "scores" : 89}, 
+      //   {"studentName" : "jon", "reviewer" : "r2","criterion" : "criterion2", "scores" : 22}, 
+      //   {"studentName" : "jon", "reviewer" : "r3", "criterion" : "criterion2", "scores" : 33}, 
+      //   {"studentName" : "jon", "reviewer" : "r4","criterion" : "criterion2", "scores" : 55}, 
+      //   {"studentName" : "jon", "reviewer" : "r5", "criterion" : "criterion2", "scores" : 58}, 
+
+      //   {"studentName" : "jon", "reviewer" : "r1", "criterion" : "criterion3", "scores" : 90}, 
+      //   {"studentName" : "jon", "reviewer" : "r2","criterion" : "criterion3", "scores" : 98}, 
+      //   {"studentName" : "jon", "reviewer" : "r3", "criterion" : "criterion3", "scores" : 73}, 
+      //   {"studentName" : "jon", "reviewer" : "r4","criterion" : "criterion3", "scores" : 56}, 
+      //   {"studentName" : "jon", "reviewer" : "r5", "criterion" : "criterion3", "scores" : 45}, 
+       
+      //   {"studentName" : "jon", "reviewer" : "r1", "criterion" : "criterion4", "scores" : 80}, 
+      //   {"studentName" : "jon", "reviewer" : "r2","criterion" : "criterion4", "scores" : 78}, 
+      //   {"studentName" : "jon", "reviewer" : "r3", "criterion" : "criterion4", "scores" : 34}, 
+      //   {"studentName" : "jon", "reviewer" : "r4","criterion" : "criterion4", "scores" : 78}, 
+      //   {"studentName" : "jon", "reviewer" : "r5", "criterion" : "criterion4", "scores" : 45}, 
+
+      //   {"studentName" : "jon", "reviewer" : "r1", "criterion" : "criterion5", "scores" : 46}, 
+      //   {"studentName" : "jon", "reviewer" : "r2","criterion" : "criterion5", "scores" : 47}, 
+      //   {"studentName" : "jon", "reviewer" : "r3", "criterion" : "criterion5", "scores" : 89}, 
+      //   {"studentName" : "jon", "reviewer" : "r4","criterion" : "criterion5", "scores" : 76}, 
+      //   {"studentName" : "jon", "reviewer" : "r5", "criterion" : "criterion5", "scores" : 90}, 
+
+
+      //   {"studentName" : "psinaik", "reviewer" : "r1", "criterion" : "criterion1", "scores" : 78}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r2", "criterion" : "criterion1", "scores" : 56}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r3", "criterion" : "criterion1", "scores" : 34}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r4", "criterion" : "criterion1", "scores" : 90}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r5", "criterion" : "criterion1", "scores" : 66}, 
+        
+      //   {"studentName" : "psinaik", "reviewer" : "r1", "criterion" : "criterion2", "scores" : 78}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r2", "criterion" : "criterion2", "scores" : 67}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r3", "criterion" : "criterion2", "scores" : 73}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r4", "criterion" : "criterion2", "scores" : 85}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r5", "criterion" : "criterion2", "scores" : 43}, 
+
+      //   {"studentName" : "psinaik", "reviewer" : "r1", "criterion" : "criterion3", "scores" : 78}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r2", "criterion" : "criterion3", "scores" : 90}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r3", "criterion" : "criterion3", "scores" : 93}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r4", "criterion" : "criterion3", "scores" : 73}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r5", "criterion" : "criterion3", "scores" : 23}, 
+       
+      //   {"studentName" : "psinaik", "reviewer" : "r1", "criterion" : "criterion4", "scores" : 78}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r2", "criterion" : "criterion4", "scores" : 45}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r3", "criterion" : "criterion4", "scores" : 33}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r4", "criterion" : "criterion4", "scores" : 88}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r5", "criterion" : "criterion4", "scores" : 100}, 
+
+      //   {"studentName" : "psinaik", "reviewer" : "r1", "criterion" : "criterion5", "scores" : 78}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r2","criterion" : "criterion5", "scores" : 67}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r3", "criterion" : "criterion5", "scores" : 89}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r4","criterion" : "criterion5", "scores" : 56}, 
+      //   {"studentName" : "psinaik", "reviewer" : "r5", "criterion" : "criterion5", "scores" : 80}, 
+
+
+      //   {"studentName" : "ned", "reviewer" : "r1", "criterion" : "criterion1", "scores" : 67}, 
+      //   {"studentName" : "ned", "reviewer" : "r2","criterion" : "criterion1", "scores" : 44}, 
+      //   {"studentName" : "ned", "reviewer" : "r3", "criterion" : "criterion1", "scores" : 67}, 
+      //   {"studentName" : "ned", "reviewer" : "r4","criterion" : "criterion1", "scores" : 43}, 
+      //   {"studentName" : "ned", "reviewer" : "r5", "criterion" : "criterion1", "scores" : 33}, 
+        
+      //   {"studentName" : "ned", "reviewer" : "r1", "criterion" : "criterion2", "scores" : 80}, 
+      //   {"studentName" : "ned", "reviewer" : "r2","criterion" : "criterion2", "scores" : 10}, 
+      //   {"studentName" : "ned", "reviewer" : "r3", "criterion" : "criterion2", "scores" : 40}, 
+      //   {"studentName" : "ned", "reviewer" : "r4","criterion" : "criterion2", "scores" : 40}, 
+      //   {"studentName" : "ned", "reviewer" : "r5", "criterion" : "criterion2", "scores" : 100}, 
+
+      //   {"studentName" : "ned", "reviewer" : "r1", "criterion" : "criterion3", "scores" : 53}, 
+      //   {"studentName" : "ned", "reviewer" : "r2","criterion" : "criterion3", "scores" : 67}, 
+      //   {"studentName" : "ned", "reviewer" : "r3", "criterion" : "criterion3", "scores" : 83}, 
+      //   {"studentName" : "ned", "reviewer" : "r4","criterion" : "criterion3", "scores" : 43}, 
+      //   {"studentName" : "ned", "reviewer" : "r5", "criterion" : "criterion3", "scores" : 33}, 
+       
+      //   {"studentName" : "ned", "reviewer" : "r1", "criterion" : "criterion4", "scores" : 73}, 
+      //   {"studentName" : "ned", "reviewer" : "r2","criterion" : "criterion4", "scores" : 56}, 
+      //   {"studentName" : "ned", "reviewer" : "r3", "criterion" : "criterion4", "scores" : 83}, 
+      //   {"studentName" : "ned", "reviewer" : "r4","criterion" : "criterion4", "scores" : 90}, 
+      //   {"studentName" : "ned", "reviewer" : "r5", "criterion" : "criterion4", "scores" : 73}, 
+
+      //   {"studentName" : "ned", "reviewer" : "r1", "criterion" : "criterion5", "scores" : 53}, 
+      //   {"studentName" : "ned", "reviewer" : "r2","criterion" : "criterion5", "scores" : 49}, 
+      //   {"studentName" : "ned", "reviewer" : "r3", "criterion" : "criterion5", "scores" : 93}, 
+      //   {"studentName" : "ned", "reviewer" : "r4","criterion" : "criterion5", "scores" : 56}, 
+      //   {"studentName" : "ned", "reviewer" : "r5", "criterion" : "criterion5", "scores" : 73}, 
+
+       
+      //   {"studentName" : "sansa", "reviewer" : "r1", "criterion" : "criterion1", "scores" : 63}, 
+      //   {"studentName" : "sansa", "reviewer" : "r2","criterion" : "criterion1", "scores" : 56}, 
+      //   {"studentName" : "sansa", "reviewer" : "r3", "criterion" : "criterion1", "scores" : 73}, 
+      //   {"studentName" : "sansa", "reviewer" : "r4","criterion" : "criterion1", "scores" : 89}, 
+      //   {"studentName" : "sansa", "reviewer" : "r5", "criterion" : "criterion1", "scores" : 13}, 
+        
+      //   {"studentName" : "sansa", "reviewer" : "r1", "criterion" : "criterion2", "scores" : 53}, 
+      //   {"studentName" : "sansa", "reviewer" : "r2","criterion" : "criterion2", "scores" : 66}, 
+      //   {"studentName" : "sansa", "reviewer" : "r3", "criterion" : "criterion2", "scores" : 77}, 
+      //   {"studentName" : "sansa", "reviewer" : "r4","criterion" : "criterion2", "scores" : 99}, 
+      //   {"studentName" : "sansa", "reviewer" : "r5", "criterion" : "criterion2", "scores" : 53}, 
+
+      //   {"studentName" : "sansa", "reviewer" : "r1", "criterion" : "criterion3", "scores" : 100}, 
+      //   {"studentName" : "sansa", "reviewer" : "r2","criterion" : "criterion3", "scores" : 34}, 
+      //   {"studentName" : "sansa", "reviewer" : "r3", "criterion" : "criterion3", "scores" : 12}, 
+      //   {"studentName" : "sansa", "reviewer" : "r4","criterion" : "criterion3", "scores" : 10}, 
+      //   {"studentName" : "sansa", "reviewer" : "r5", "criterion" : "criterion3", "scores" : 24}, 
+       
+      //   {"studentName" : "sansa", "reviewer" : "r1", "criterion" : "criterion4", "scores" : 90}, 
+      //   {"studentName" : "sansa", "reviewer" : "r2","criterion" : "criterion4", "scores" : 33}, 
+      //   {"studentName" : "sansa", "reviewer" : "r3", "criterion" : "criterion4", "scores" : 76}, 
+      //   {"studentName" : "sansa", "reviewer" : "r4","criterion" : "criterion4", "scores" : 89}, 
+      //   {"studentName" : "sansa", "reviewer" : "r5", "criterion" : "criterion4", "scores" : 90}, 
+
+      //   {"studentName" : "sansa", "reviewer" : "r1", "criterion" : "criterion5", "scores" : 44}, 
+      //   {"studentName" : "sansa", "reviewer" : "r2","criterion" : "criterion5", "scores" : 43}, 
+      //   {"studentName" : "sansa", "reviewer" : "r3", "criterion" : "criterion5", "scores" : 63}, 
+      //   {"studentName" : "sansa", "reviewer" : "r4","criterion" : "criterion5", "scores" : 43}, 
+      //   {"studentName" : "sansa", "reviewer" : "r5", "criterion" : "criterion5", "scores" : 63}, 
+
+      //    {"studentName" : "bran", "reviewer" : "r1", "criterion" : "criterion1", "scores" : 63}, 
+      //   {"studentName" : "bran", "reviewer" : "r2","criterion" : "criterion1", "scores" : 56}, 
+      //   {"studentName" : "bran", "reviewer" : "r3", "criterion" : "criterion1", "scores" : 73}, 
+      //   {"studentName" : "bran", "reviewer" : "r4","criterion" : "criterion1", "scores" : 89}, 
+      //   {"studentName" : "bran", "reviewer" : "r5", "criterion" : "criterion1", "scores" : 13}, 
+        
+      //   {"studentName" : "bran", "reviewer" : "r1", "criterion" : "criterion2", "scores" : 53}, 
+      //   {"studentName" : "bran", "reviewer" : "r2","criterion" : "criterion2", "scores" : 66}, 
+      //   {"studentName" : "bran", "reviewer" : "r3", "criterion" : "criterion2", "scores" : 77}, 
+      //   {"studentName" : "bran", "reviewer" : "r4","criterion" : "criterion2", "scores" : 99}, 
+      //   {"studentName" : "bran", "reviewer" : "r5", "criterion" : "criterion2", "scores" : 53}, 
+
+      //   {"studentName" : "bran", "reviewer" : "r1", "criterion" : "criterion3", "scores" : 63}, 
+      //   {"studentName" : "bran", "reviewer" : "r2","criterion" : "criterion3", "scores" : 90}, 
+      //   {"studentName" : "bran", "reviewer" : "r3", "criterion" : "criterion3", "scores" : 93}, 
+      //   {"studentName" : "bran", "reviewer" : "r4","criterion" : "criterion3", "scores" : 100}, 
+      //   {"studentName" : "bran", "reviewer" : "r5", "criterion" : "criterion3", "scores" : 67}, 
+       
+      //   {"studentName" : "bran", "reviewer" : "r1", "criterion" : "criterion4", "scores" : 90}, 
+      //   {"studentName" : "bran", "reviewer" : "r2","criterion" : "criterion4", "scores" : 33}, 
+      //   {"studentName" : "bran", "reviewer" : "r3", "criterion" : "criterion4", "scores" : 76}, 
+      //   {"studentName" : "bran", "reviewer" : "r4","criterion" : "criterion4", "scores" : 89}, 
+      //   {"studentName" : "bran", "reviewer" : "r5", "criterion" : "criterion4", "scores" : 90}, 
+
+      //   {"studentName" : "bran", "reviewer" : "r1", "criterion" : "criterion5", "scores" : 44}, 
+      //   {"studentName" : "bran", "reviewer" : "r2","criterion" : "criterion5", "scores" : 43}, 
+      //   {"studentName" : "bran", "reviewer" : "r3", "criterion" : "criterion5", "scores" : 63}, 
+      //   {"studentName" : "bran", "reviewer" : "r4","criterion" : "criterion5", "scores" : 43}, 
+      //   {"studentName" : "bran", "reviewer" : "r5", "criterion" : "criterion5", "scores" : 63}
+      // ];
