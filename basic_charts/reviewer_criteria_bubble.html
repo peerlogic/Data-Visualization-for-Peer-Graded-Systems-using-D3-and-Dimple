@@ -196,7 +196,7 @@
         x.title ="Criteria" ;
         var y = myChart.addCategoryAxis("y", "Reviewer");
         y.title = "Reviewers";
-        var z = myChart.addMeasureAxis("z", "Score");
+        // var z = myChart.addMeasureAxis("z", "Score");
         myChart.addColorAxis("Score", [ "#F7977A", "#FFF79A", "#05834E"]);
         // myChart.addColorAxis("Standard Deviation", colors[0], colors[1], colors[2]);
           // Control bubble sizes by setting the max and min values    
@@ -216,6 +216,7 @@
 
         setTimeout(function () {
         svg.selectAll("circle")
+        .attr("r", 90)
         .attr("opacity", 0.2);
         }, 50);
     });
@@ -242,7 +243,7 @@
         var processed_scores_per_student ;
 
         for( var i = 0; i < raw_review_data.length; i++ ){ //student
-                            processed_scores_per_student = [];
+            processed_scores_per_student = [];
 
             for( var j = 0; j < raw_review_data[i].length; j++ ){ // criteria
                 // processed_scores_per_student = [];
