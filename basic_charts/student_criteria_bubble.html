@@ -166,20 +166,21 @@
         ]
 }
 
-
     var x_labels = [] ;
     var y_labels = [] ;
     var content = [] ;
     var processed_student_data = [] ;
     var processed_reviewer_data = [];
+    var processed_reviewer_data_for_bar_chart = [] ;
 
-    d3.json("data.json", function(data){
+    d3.json("data/crude_data.json", function(data){
         
         x_labels = reviewdata.x_labels;
         y_labels = reviewdata.y_labels;
         content = reviewdata.content;
         processed_student_data = processRawStudentData();
         processed_reviewer_data = processRawReviewerData();
+        processed_reviewer_data_for_bar_chart = processRawReviewerDataForBarChart();
         // The main chart
         var myChart = new dimple.chart(svg, processed_reviewer_data);
 
@@ -209,12 +210,13 @@
         var s = myChart.addSeries(null, dimple.plot.bubble);
         myChart.addLegend(180, 1, 360, 20, "right");
 
-        myChart.draw();
 
         // Handle the hover event - overriding the default behaviour
         // debugger;
-        s.addEventHandler("hover", function(e){
-            debugger;
+      // s.addEventHandler("mouseover", onHover);
+
+        s.addEventHandler("mouseover", function(e){
+            // debugger;
         // Get the properties of the selected shape
         var cx = parseFloat(e.selectedShape.attr("cx")),
             cy = parseFloat(e.selectedShape.attr("cy")),
@@ -266,22 +268,22 @@
           .style("fill", stroke);
         
         // Filter the data for the selected student and criterion
-        var hoverData = dimple.filterData(processed_reviewer_data, "Criterion", e.xValue);
-        debugger;
+        var hoverData = dimple.filterData(processed_reviewer_data_for_bar_chart, "Criterion", e.xValue);
+        // debugger;
         hoverData = dimple.filterData(hoverData, "Student", e.yValue);
-        debugger;
         // Create a new mini chart of scores given by different Reviewers
         tipChart = new dimple.chart(svg,  hoverData);
+        // debugger;
         tipChart.setBounds(x + 10, y + 30, width - 10, height - 40);
-        tipChart.addCategoryAxis("x", "Student").hidden = false;
-        tipChart.addMeasureAxis("y", "Criterion").hidden = true;
+        tipChart.addCategoryAxis("x", "Reviewer").hidden = false;
+        tipChart.addMeasureAxis("y", "Score").hidden = true;
         
         // Add a bar series, this can be changed to a line, area or bubble
         // by changing the plot parameter accordingly.
         var popUpSeries = tipChart.addSeries("SelectedSeries", dimple.plot.bar);
         
         // Set the gap to 80% - just a style preference
-        popUpSeries.barGap = 0.5;
+        popUpSeries.barGap = 0.8;
         
         // Set the color to the stroke color of the selected node
         tipChart.assignColor("SelectedSeries", stroke, stroke);
@@ -289,6 +291,9 @@
         // Draw the mini chart
         tipChart.draw(); 
         });
+
+        myChart.draw();
+
         // Handle the leave event - overriding the default behaviour
         s.addEventHandler("mouseup", onMouseLeave);
 
@@ -472,6 +477,28 @@
         return average_per_criterion;
     }
 
+
+function processRawReviewerDataForBarChart(){
+
+    var raw_review_data = reviewdata.content;
+    var row ;
+    for( var i = 0 ; i < raw_review_data.length; i++){ // students
+        for( var j =0 ; j< raw_review_data[i].length; j++){
+
+            for( var k =0 ; k < raw_review_data[i][j].length; k++){
+                row = {};
+                row['Student'] = reviewdata.y_labels[i];
+                row['Criterion'] = reviewdata.x_labels[j];
+                row['Reviewer'] = reviewdata.z_labels[k];
+                row['Score'] = raw_review_data[i][j][k].score;
+                processed_reviewer_data_for_bar_chart.push(row);
+                // console.log(row);
+            }
+        }
+    }
+    debugger;
+    return processed_reviewer_data_for_bar_chart;
+}
       // // Event to handle mouse enter
       // function onClick(e) {
         
