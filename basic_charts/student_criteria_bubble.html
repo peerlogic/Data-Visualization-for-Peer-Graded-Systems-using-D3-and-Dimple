@@ -199,30 +199,11 @@
         var negative_color_code = reviewdata.configuration.color_scheme.negative_color;
         var neutral_color_code = reviewdata.configuration.color_scheme.neutral_color;
 
-        // var positive_color = new dimple.color();
-        // positive_color.fill = positive_color_code;
-        // positive_color.stroke = positive_color_code ;
-        // positive_color.opacity = 0.5;
-        // colors.push(positive_color);
-        
-        // var negative_color = new dimple.color();
-        // negative_color.fill = negative_color_code;
-        // negative_color.opacity = 0.5;
-        // negative_color.stroke = negative_color_code ;
-        // colors.push(negative_color);
-
-        // var neutral_color = new dimple.color();
-        // neutral_color.fill = neutral_color_code;
-        // neutral_color.opacity = 0.5;
-        // neutral_color.stroke = neutral_color_code ;
-        // colors.push(neutral_color);
-
         var color_codes = [] ;
         color_codes.push(positive_color_code);
         color_codes.push(neutral_color_code);
         color_codes.push(negative_color_code);
 
-        // DA3131
         var colorAxis = myChart.addColorAxis("Standard Deviation", color_codes);
         var bubbleSeries = myChart.addSeries(null, dimple.plot.bubble);
         myChart.addLegend(900, 1, 1300, 20, "right");
