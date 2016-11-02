@@ -169,7 +169,7 @@
                     "neutral_color" : "#F7977A",
                     "positive_color" : "#088137"
                 },
-                "circle" : {
+                "bubble" : {
                     "min_radius" : "10px", 
                     "max_radius" : "200px"
                 }
@@ -370,6 +370,13 @@
              return color_codes ;
         }
 
+        function configureBubbleSize(var axis){
+
+            axis.overrideMin = reviewdata.configuration.bubble.min_radius;
+            axis.overrideMax = reviewdata.configuration.bubble.max_radius;  
+            return axis ;
+        }
+
 
         function drawChartForMeanData(processed_data){
 
@@ -391,10 +398,8 @@
             
             // Size of the bubble denotes the standard deviation from the mean.
             var z = myChart.addMeasureAxis("z", "Standard Deviation");
-
-            // z.overrideMin = 0.2;  
-            // z.overrideMax = 1.5;   
-
+ 
+            // z = configureBubbleSize(z);
             // orange to green
             // Color of the bubble denotes the mean.
             var colorAxis = myChart.addColorAxis("Mean Of Scores", color_codes);
@@ -432,8 +437,10 @@
             // Size of the bubble denotes the standard deviation from the mean.
             var z = myChart.addMeasureAxis("z", "Standard Deviation");
 
-            // z.overrideMin = 0.2;  
-            // z.overrideMax = 1.5;   
+            // debugger;
+
+            z.overrideMin = 50;  
+            z.overrideMax = 25;   
 
             // orange to green
             // Color of the bubble denotes the mean.
@@ -544,6 +551,7 @@
             myChart.draw();
             svg.selectAll("circle")
             .attr("opacity", 0.6);
+            // linkify();
         }
 
          function linkify() {
