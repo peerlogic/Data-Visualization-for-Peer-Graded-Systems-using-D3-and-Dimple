@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div>
+    <h3>Tooltip Chart</h3>
+    </div>
+    <script type="text/javascript">
+    // Add a simple SVG element to the body of this document
+      var svg = dimple.newSvg("body", 1000, 900);
+      var data;
+
+      // Create a dataset for 7 students and 5 criterions ( 35 avgscores)
+      // studentData.content[0] -> mean scores for 0th student across all criteria
+      // studentData.content[0][2] -> mean scores for 0th student for the 2nd criterion.
+     var studentData = {
+
+        "x_labels" : ["Criterion 1", "Criterion 2", "Criterion 3", "Criterion 4","Criterion 5" ],
+        "y_labels" : ["Student1", "Student2", "Student3", "Student4", "Student5", "Student6", "Student7"],
+        "z_labels" : [ "r1", "r2", "r3", "r4"],
+        "configuration":{
+            "is_mean_user_provided" : false,
+            "color_scheme":{
+            "negative_color" : "#fb2d4f",
+            "positive_color" : "#2d9a4c"
+            },
+            "bubble" : {
+                "min_radius" : "-0.5", 
+                "max_radius" : "0.5"
+            }
+        },
+        
+        "content" :[
+            [ 
+                {"mean_score" : 50, "variance" : 217.5, "scores" :[{"score": 10, "comment" : "" }, { "score": 90, "comment" : "" }]},
+                {"mean_score" : 45, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "" }, { "score": 1, "comment" : "" }]},
+                {"mean_score" : 67, "variance" : 23986.799999999996, "scores" :[{"score": 100, "comment" : "" }, { "score": 0, "comment" : "" }]},
+                {"mean_score" : 34, "variance" : 44624.85, "scores" :[{"score": 19, "comment" : "" }, { "score": 9, "comment" : "" }]},
+                {"mean_score" : 53, "variance" : 88406.30000000002, "scores" :[{"score": 6, "comment" : "" }, { "score": 90, "comment" : "" }]},
+            ], 
+            [
+                {"mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 4, "variance" : 278073, "scores" :[{"score": 89, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 90, "comment" : "" }]},
+                {"mean_score" : 34, "variance" : 161152.5, "scores" :[{"score": 40, "comment" : "" }, { "score": 35, "comment" : "" }, { "score": 32, "comment" : "" }, { "score": 28, "comment":""}]},
+                {"mean_score" : 2, "variance" : 278073, "scores" :[{"score": 60, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""} ]},
+                {"mean_score" : 80, "variance" : 278073, "scores" :[{"score": 10, "comment" : "" }, { "score": 9, "comment" : "" }, { "score": 13, "comment" : "" }, { "score": 8, "comment":""} ]}
+            ],
+            [
+                {"mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 60, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 30, "variance" : 278073, "scores" :[{"score": 0, "comment" : "" },  { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 80, "variance" : 161152.5,"scores" :[{"score": 60, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 85, "comment":""} ]},
+                {"mean_score" : 90, "variance" : 278073, "scores" :[{"score": 60, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""} ]},
+                {"mean_score" : 5, "variance" : 278073, "scores" :[{"score": 60, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""} ]}
+            ],
+            [
+                {"mean_score" : 10, "variance" : 161152.5, "scores" :[{"score": 1, "comment" : "" }, { "score": 8, "comment" : "" }, { "score": 9, "comment" : "" }, { "score": 10, "comment" : "" }]},
+                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "" }, { "score": 45, "comment" : "" }, { "score": 55, "comment" : "" }, { "score": 50, "comment" : "" }]},
+                {"mean_score" : 0, "variance" : 161152.5, "scores" :[{"score": 0, "comment" : "" }, { "score": 95, "comment" : "" }, { "score": 89, "comment" : "" }, { "score": 75, "comment":""}]},
+                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "" }, { "score": 67, "comment" : "" }, { "score": 99, "comment" : "" }, { "score": 25, "comment":""} ]},
+                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "" }, { "score": 89, "comment" : "" }, { "score": 92, "comment" : "" }, { "score": 75, "comment":""} ]}
+            ],
+            [
+                {"mean_score" : 5, "variance" : 161152.5, "scores" :[{"score": 6, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 5, "variance" : 278073 ,"scores" :[{"score": 0, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 0, "variance" : 161152.5, "scores" :[{"score": 100, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 85, "comment":""}]},
+                {"mean_score" : 45, "variance" : 278073, "scores" :[{"score": 9, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""}]},
+                {"mean_score" : 100, "variance" : 278073, "scores" :[{"score": 10, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""}]}
+            ],
+            [ 
+                {"mean_score" : 50, "variance" : 217.5, "scores" :[{"score": 60, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 50, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 50, "variance" : 23986.799999999996, "scores" :[{"score": 60, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 85, "comment":""}]},
+                {"mean_score" : 50, "variance" : 44624.85, "scores" :[{"score": 60, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""} ]},
+                {"mean_score" : 50, "variance" : 88406.30000000002, "scores" :[{"score": 60, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""}]},
+            ], 
+            [ 
+                {"mean_score" : 50, "variance" : 217.5, "scores":[{"score": 60, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 50, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }]},
+                {"mean_score" : 50, "variance" : 23986.799999999996, "scores" :[{"score": 60, "comment" : "" }, { "score": 85, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 85, "comment":""} ]},
+                {"mean_score" : 50, "variance" : 44624.85, "scores" :[{"score": 60, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""}]},
+                {"mean_score" : 50, "variance" : 88406.30000000002, "scores" :[{"score": 60, "comment" : "" }, { "score": 90, "comment" : "" }, { "score": 100, "comment" : "" }, { "score": 85, "comment":""}]},
+            ]
+        ]
+    };
+
+    var x_labels = [] ;
+    var y_labels = [] ;
+    var content = [] ;
+    var processed_student_data = [] ;
+    var processed_reviewer_data = [];
+    var processed_reviewer_data_for_bar_chart = [] ;
+
+    d3.json("data/crude_data.json", function(data){
+        
+        // x_labels = reviewdata.x_labels;
+        // y_labels = reviewdata.y_labels;
+        // content = reviewdata.content;
+        debugger;
+        processed_student_data = processRawStudentData();
+        processed_reviewer_data = processRawReviewerData();
+        processed_reviewer_data_for_bar_chart = processRawReviewerDataForBarChart();
+        // The main chart
+        var myChart = new dimple.chart(svg, processed_reviewer_data);
+
+        // The chart to show in a tooltip
+        var tipChart = null;
+        // The other popup shapes
+        var popup = null;
+        // Position the main chart
+        myChart.setBounds(100, 40, 680, 450);
+      
+        // Add the main chart axes
+        var x = myChart.addCategoryAxis("x", "Criterion");
+        x.title = "Criteria";
+        x.fontSize = "12px";
+
+        x.fontFamily = "sans-serif";
+        var y = myChart.addCategoryAxis("y", "Student");
+        y.title = "Students" ;
+        y.fontSize = "12px";
+        // var z = myChart.addMeasureAxis("z", "Mean Of Scores");
+
+        var colors = [];
+        var positive_color_code = reviewdata.configuration.color_scheme.positive_color;
+        var negative_color_code = reviewdata.configuration.color_scheme.negative_color;
+        var neutral_color_code = reviewdata.configuration.color_scheme.neutral_color;
+
+        var color_codes = [] ;
+        color_codes.push(positive_color_code);
+        color_codes.push(neutral_color_code);
+        color_codes.push(negative_color_code);
+
+        var colorAxis = myChart.addColorAxis("Standard Deviation", color_codes);
+        var bubbleSeries = myChart.addSeries(null, dimple.plot.bubble);
+        myChart.addLegend(900, 1, 1300, 20, "right");
+
+        // Handle the leave event - overriding the default behaviour
+        bubbleSeries.addEventHandler("mouseup", function(e) {
+            // Remove the chart
+            if (tipChart !== null) {
+              tipChart._group.remove();
+            }
+            // Remove the popup
+            if (popup !== null) {
+              popup.remove();
+            }
+        });
+
+        // Handle the click event - overriding the default behaviour
+        bubbleSeries.addEventHandler("click", function(e){
+            // Get the properties of the selected shape
+            var cx = parseFloat(e.selectedShape.attr("cx")),
+                cy = parseFloat(e.selectedShape.attr("cy")),
+                r = parseFloat(e.selectedShape.attr("r")),
+                fill = e.selectedShape.attr("fill"),
+                stroke = e.selectedShape.attr("stroke");
+                
+            // Set the size and position of the popup
+            var width = 150,
+                height = 100,
+                x = (cx + r + width + 10 < svg.attr("width") ?
+                      cx + r + 10 :
+                      cx - r - width - 20);
+                y = (cy - height / 2 < 0 ?
+                      15 :
+                      cy - height / 2);
+                    
+            // Fade the popup fill mixing the shape fill with 80% white
+            var popupFillColor = d3.rgb(
+                        d3.rgb(fill).r + 0.8 * (255 - d3.rgb(fill).r),
+                        d3.rgb(fill).g + 0.8 * (255 - d3.rgb(fill).g),
+                        d3.rgb(fill).b + 0.8 * (255 - d3.rgb(fill).b)
+                    );
+            
+            // Create a group for the popup objects
+            popup = svg.append("g");
+            
+            // Add a rectangle surrounding the chart
+            popup
+              .append("rect")
+              .attr("x", x + 5)
+              .attr("y", y - 5)
+              .attr("width", width)
+              .attr("height", height)
+              .attr("rx", 5)
+              .attr("ry", 5)
+              .style("fill", popupFillColor)
+              .style("stroke", stroke)
+              .style("stroke-width", 2);
+            
+            // Add the series value text
+            popup
+              .append("text")
+              .attr("x", x + 10)
+              .attr("y", y + 10)
+              .text(e.yValue +  ', '+ e.xValue)
+              .style("font-family", "sans-serif")
+              .style("font-size", 6)
+              .style("fill", stroke);
+            
+            // Filter the data for the selected student and criterion
+            var clickData = dimple.filterData(processed_reviewer_data_for_bar_chart, "Criterion", e.xValue);
+            clickData = dimple.filterData(clickData, "Student", e.yValue);
+
+            // Create a new mini chart of scores given by different Reviewers
+            tipChart = new dimple.chart(svg,  clickData);
+            tipChart.setBounds(x + 10, y + 30, width - 10, height - 40);
+            tipChart.addCategoryAxis("x", "Reviewer").hidden = false;
+            tipChart.addMeasureAxis("y", "Score").hidden = true;
+            
+            // Add a bar series, this can be changed to a line, area or bubble
+            // by changing the plot parameter accordingly.
+            var popUpSeries = tipChart.addSeries("SelectedSeries", dimple.plot.bar);
+            
+            // Set the gap to 50% - just a style preference
+            popUpSeries.barGap = 0.5;
+            
+            // Set the color to the stroke color of the selected node
+            tipChart.assignColor("SelectedSeries", stroke, stroke);
+            
+            // Draw the mini chart
+            tipChart.draw(); 
+
+        });
+
+        
+
+        // This should be drawn at the very end, when all the events have been called.
+        myChart.draw();
+
+        // svg.selectAll("circle")
+        // .attr("opacity", 0.2);
+
+    });
+
+    function processRawStudentData(){
+        
+        var raw_student_data = studentData.content ;
+        for( var i = 0; i < raw_student_data.length; i++ ){ //student
+            for( var j = 0; j < raw_student_data[i].length; j++ ){ // criteria
+                processed_student_data.push({
+                    "Student": studentData.y_labels[i],
+                    "Criterion" : studentData.x_labels[j],
+                    "MeanScore" : raw_student_data[i][j].mean_score,
+                    "Variance" : raw_student_data[i][j].variance
+                });
+            }
+        }
+      return processed_student_data;
+    }
+    
+    // reviewdata.content[0][1][3] 0th student , 1st criteria, marks by 3rd reviewer
+    function processRawReviewerData(){
+        var raw_review_data = reviewdata.content;
+
+        for( var i = 0; i < raw_review_data.length; i++ ){ //student
+            
+            for( var j = 0; j < raw_review_data[i].length; j++ ){ // criteria
+                row = {} ;
+                row['Student'] =  reviewdata.y_labels[i];
+                row['Criterion'] = reviewdata.x_labels[j] ;
+                var sum  = 0.0;
+                var avg = 0.0;
+               
+                var review_count = 0 ;
+
+                for( var k = 0; k < raw_review_data[i][j].length; k++ ){ // reviewer
+                    var temp_score = raw_review_data[i][j][k].score ;
+                    var label = 'Score By ' + reviewdata.z_labels[k] ;
+                    row[label] = temp_score ;
+                    sum = sum + temp_score;
+                    review_count++ ;
+                }
+                avg = sum/ review_count;
+                row["Mean Of Scores"] = avg;
+                var sum_of_diff_squares = 0.0;
+                var std_deviation = 0.0;
+
+                for( var k = 0; k < raw_review_data[i][j].length; k++ ){ // reviewer
+                    var temp_score = raw_review_data[i][j][k].score ;
+                    sum_of_diff_squares += Math.pow((temp_score - avg) , 2);
+                }
+                std_deviation = Math.sqrt(sum_of_diff_squares/review_count);
+                row["Standard Deviation"] = std_deviation;
+                processed_reviewer_data.push(row);
+            }
+        }
+        return processed_reviewer_data;
+    }
+     
+
+    function get_avg_scores_for_each_criterion(scores_per_criterion){
+
+        average_per_criterion = {} ;
+        var sum = 0.0 ;
+        var avg = 0.0 ;
+        var keys  = Object.keys(scores_per_criterion); 
+        var criterion_num = 0 ;
+
+        for( var key in scores_per_criterion){
+            var num = 0;    
+            for( var i = 0 ; i < scores_per_criterion[key].length; i++){
+                sum = sum + scores_per_criterion[key][i];
+                num = i + 1;
+            }
+            avg = sum / num ;
+            average_per_criterion[key] = avg ;
+            reviewer_criteria_data_clone.content[criterion_num].push({"average": avg});
+            criterion_num = criterion_num + 1 ;
+        } 
+        return average_per_criterion;
+    }
+
+
+    function processRawReviewerDataForBarChart(){
+
+        var raw_review_data = reviewdata.content;
+        var row ;
+        for( var i = 0 ; i < raw_review_data.length; i++){ // students
+            for( var j =0 ; j< raw_review_data[i].length; j++){
+
+                for( var k =0 ; k < raw_review_data[i][j].length; k++){
+                    row = {};
+                    row['Student'] = reviewdata.y_labels[i];
+                    row['Criterion'] = reviewdata.x_labels[j];
+                    row['Reviewer'] = reviewdata.z_labels[k];
+                    row['Score'] = raw_review_data[i][j][k].score;
+                    processed_reviewer_data_for_bar_chart.push(row);
+                }
+            }
+        }
+        return processed_reviewer_data_for_bar_chart;
+    }
+    </script>
+  </body>
+</html>
