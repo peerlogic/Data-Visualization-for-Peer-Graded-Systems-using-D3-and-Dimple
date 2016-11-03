@@ -196,12 +196,13 @@
         x.title ="Criteria" ;
         var y = myChart.addCategoryAxis("y", "Reviewer");
         y.title = "Reviewers";
-        // var z = myChart.addMeasureAxis("z", "Score");
+        var z = myChart.addMeasureAxis("z", "Score");
         myChart.addColorAxis("Score", [ "#F7977A", "#FFF79A", "#05834E"]);
         // myChart.addColorAxis("Standard Deviation", colors[0], colors[1], colors[2]);
           // Control bubble sizes by setting the max and min values    
-     // z.overrideMin = 900;
-     // z.overrideMax = 3000;
+         // z.overrideMin = 100;
+         // z.overrideMax = 120;
+
         var b = myChart.addSeries(null, dimple.plot.bubble);
 
         myChart.addLegend(180, 1, 360, 20, "right");
@@ -214,11 +215,11 @@
         // .attr("r", 100);
         // }, 100);
 
-        setTimeout(function () {
-        svg.selectAll("circle")
-        .attr("r", 90)
-        .attr("opacity", 0.2);
-        }, 50);
+        // setTimeout(function () {
+        // svg.selectAll("circle")
+        // .attr("r", 90)
+        // .attr("opacity", 0.2);
+        // }, 50);
     });
 
 
