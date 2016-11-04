@@ -17,9 +17,22 @@
     // studentData.content[0][2] -> mean scores for 0th student for the 2nd criterion.
     var studentData = {
 
-        "x_labels" : ["Criterion 1", "Criterion 2", "Criterion 3", "Criterion 4","Criterion 5" ],
-        "y_labels" : ["Student1", "Student2", "Student3", "Student4", "Student5", "Student6", "Student7"],
-        "links" : [ "/Student1.html", "/Student2.html", "/Student3.html", "/Student4.html"],
+        "x_labels" : [
+                        {"label" : "Criterion 1", "url" : "/criterion1.html"}, 
+                        {"label" : "Criterion 2", "url" : "/criterion2.html"},
+                        {"label" : "Criterion 3", "url" : "/criterion3.html"}, 
+                        {"label" : "Criterion 4", "url" : "/criterion4.html"},
+                        {"label" : "Criterion 5", "url" : "/criterion5.html"} 
+                    ],
+        "y_labels" : [
+                        {"label" : "Student 1", "url" : "/student1.html"}, 
+                        {"label" : "Student 2", "url" : "/student2.html"},
+                        {"label" : "Student 3", "url" : "/student3.html"}, 
+                        {"label" : "Student 4", "url" : "/student4.html"},
+                        {"label" : "Student 5", "url" : "/student5.html"},
+                        {"label" : "Student 6", "url" : "/student6.html"},
+                        {"label" : "Student 7", "url" : "/student7.html"} 
+                    ],
         "configuration":{
             "is_mean_user_provided" : false,
             "color_scheme":{
@@ -106,8 +119,8 @@
 
     d3.json("data/crude_data.json", function(data){
         
-        x_labels = studentData.x_labels;
-        y_labels = studentData.y_labels;
+        x_labels = studentData.x_labels.label;
+        y_labels = studentData.y_labels.label;
         content = studentData.content;
         processed_student_data = processRawStudentData();
         
@@ -307,8 +320,8 @@
 
                 for( var k =0 ; k < raw_student_data[i][j].scores.length; k++){
                     var row = {};
-                    row["Student"] = studentData.y_labels[i];
-                    row["Criterion"] = studentData.x_labels[j];
+                    row["Student"] = studentData.y_labels[i].label;
+                    row["Criterion"] = studentData.x_labels[j].label;
                     row["Reviewer"] = raw_student_data[i][j].scores[k].reviewer_name;
                     row["Score"] = raw_student_data[i][j].scores[k].score;
                     processed_student_data_for_bar_chart.push(row);
@@ -335,6 +348,10 @@
 
     function linkify(){
 
+        // Select the x-labels
+            d3.selectAll(".dimple-axis-x .dimple-custom-axis-label").html("<a href='newPage.html'>new page</a>");
+        // Select the y-labels
+            d3.selectAll(".dimple-axis-y .dimple-custom-axis-label").html("<a href='newPage.html'>new page</a>");
     }
 
     </script>
