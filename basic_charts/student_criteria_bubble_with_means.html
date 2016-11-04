@@ -115,7 +115,8 @@
         var bubbleSeries = configureMainChart(myChart);
 
         // Handle the leave event - overriding the default behaviour
-        bubbleSeries.addEventHandler("mousemove", onMouseMove);
+        // mousemove
+        bubbleSeries.addEventHandler("mouseUp", onMouseMove);
 
         // Handle the click event - overriding the default behaviour
         bubbleSeries.addEventHandler("click", onMouseClick);
@@ -167,7 +168,6 @@
 
 
     function onMouseClick(e){
-        // debugger;
 
         processed_student_data_for_bar_chart = processRawStudentDataForBarChart();
 
@@ -315,7 +315,6 @@
                 }
             }
         }
-        // debugger;
         return processed_student_data_for_bar_chart;
     }
 
@@ -332,6 +331,12 @@
         color_codes.push(negative_color_code);
         return color_codes ;
     }
+
+
+    function linkify(){
+
+    }
+
     </script>
   </body>
 </html>
