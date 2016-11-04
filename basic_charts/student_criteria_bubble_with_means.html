@@ -122,6 +122,8 @@
     d3.json("data/crude_data.json", function(data){
         
         content = studentData.content;
+        setXLabels();
+        setYLabels();
         processed_student_data = processRawStudentData();
         
         myChart = new dimple.chart(svg, processed_student_data);
@@ -136,19 +138,16 @@
 
         // This should be drawn at the very end, when all the events have been called.
         myChart.draw();
-
-        svg.selectAll("circle")
-        .attr("opacity", 0.65);
+        linkify();
+        // svg.selectAll("circle")
+        // .attr("opacity", 0.65);
 
     });
 
     function configureMainChart(myChart){
 
-        setXLabels();
-        setYLabels();
         setXurls();
         setYurls();
-        
         myChart.setBounds(100, 40, 680, 450);
       
         // Add the main chart axes
@@ -274,9 +273,8 @@
         for( var i = 0; i < raw_student_data.length; i++ ){ //student
             for( var j = 0; j < raw_student_data[i].length; j++ ){ // criteria
                 var row = {} ;
-                debugger;
-                row['Student'] = y_labels[i].label_name ;
-                row['Criterion'] = x_labels[j].label_name;
+                row['Student'] = y_labels[i];
+                row['Criterion'] = x_labels[j];
 
                 if( is_mean_user_provided){
                     row['Mean Of Scores'] = raw_student_data[i][j].mean_score;
@@ -351,15 +349,27 @@
     function linkify(){
 
         // Select the x-labels
-        d3.selectAll(".dimple-axis-x .dimple-custom-axis-label").html("<a href='newPage.html'>new page</a>");
-        // Select the y-labels
-        d3.selectAll(".dimple-axis-y .dimple-custom-axis-label").html("<a href='newPage.html'>new page</a>");
+        var iter = 0;
+        d3.selectAll(".dimple-axis-x .dimple-custom-axis-label").each(function(i){
+            if( !d3.select(".dimple-axis-x .dimple-custom-axis-label").classed("selected"))
+                d3.select(".dimple-axis-x .dimple-custom-axis-label").html("<a href='" + x_urls[iter] + "'>" + i + "</a>").attr("class", "selected");
+            iter++;
+        });
+
+         // Select the y-labels
+        var iter = 0;
+        d3.selectAll(".dimple-axis-y .dimple-custom-axis-label").each(function(i){
+            if( !d3.select(".dimple-axis-y .dimple-custom-axis-label").classed("selected"))
+                d3.select(".dimple-axis-y .dimple-custom-axis-label").html("<a href='" + y_urls[iter] + "'>" + i + "</a>").attr("class", "selected");
+            iter++;
+        });
+
+
     }
 
      function setXLabels(){
         for( var i = 0; i < studentData.x_labels.length; i++){
             x_labels.push(studentData.x_labels[i].label_name);
-            x_urls.push(studentData.x_labels[i].url);
         }
     }
 
@@ -367,7 +377,6 @@
     function setYLabels(){
         for( var i = 0; i < studentData.y_labels.length; i++){
             y_labels.push(studentData.y_labels[i].label_name);
-            y_urls.push(studentData.y_labels[i].url);
         }
     }
 
