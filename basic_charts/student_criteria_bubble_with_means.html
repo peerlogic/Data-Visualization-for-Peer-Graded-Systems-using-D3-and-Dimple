@@ -32,7 +32,9 @@
             "bubble" : {
                 "min_radius" : "-0.5", 
                 "max_radius" : "0.5"
-            }
+            },
+            "font_family" : "",
+            "font_size" : "12px"
         },
         
         "content" :[
@@ -103,35 +105,19 @@
         content = studentData.content;
         processed_student_data = processRawStudentData();
         
-        // processed_reviewer_data = processRawReviewerData();
+        // The main chart
+        var myChart = new dimple.chart(svg, processed_student_data);
+        var bubbleSeries = configureMainChart(myChart);
+             // processed_reviewer_data = processRawReviewerData();
         processed_student_data_for_bar_chart = processRawStudentDataForBarChart();
         debugger;
 
-        // The main chart
-        var myChart = new dimple.chart(svg, processed_student_data);
-        drawMainChart(myChart);
         // The chart to show in a tooltip
         var tipChart = null;
         // The other popup shapes
         var popup = null;
         // Position the main chart
-        myChart.setBounds(100, 40, 680, 450);
-      
-        // Add the main chart axes
-        var x = myChart.addCategoryAxis("x", "Criterion");
-        x.title = "Criteria";
-        x.fontSize = "12px";
-
-        x.fontFamily = "sans-serif";
-        var y = myChart.addCategoryAxis("y", "Student");
-        y.title = "Students" ;
-        y.fontSize = "12px";
-        // var z = myChart.addMeasureAxis("z", "Mean Of Scores");
-
-        var color_codes = configureColors();
-        var colorAxis = myChart.addColorAxis("Standard Deviation", color_codes);
-        var bubbleSeries = myChart.addSeries(null, dimple.plot.bubble);
-        myChart.addLegend(900, 1, 1300, 20, "right");
+       
 
         // Handle the leave event - overriding the default behaviour
         bubbleSeries.addEventHandler("mouseup", function(e) {
@@ -231,6 +217,30 @@
         // .attr("opacity", 0.2);
 
     });
+
+    function configureMainChart(myChart){
+
+        myChart.setBounds(100, 40, 680, 450);
+      
+        // Add the main chart axes
+        var x = myChart.addCategoryAxis("x", "Criterion");
+        x.title = "Criteria";
+        x.fontSize = studentData.configuration.font_size;
+        x.fontFamily = studentData.configuration.font_family;
+
+        var y = myChart.addCategoryAxis("y", "Student");
+        y.title = "Students" ;
+        y.fontSize = studentData.configuration.font_size;
+        y.fontFamily = studentData.configuration.font_family;
+        var z = myChart.addMeasureAxis("z", "Mean Of Scores");
+
+        var color_codes = configureColors();
+        var colorAxis = myChart.addColorAxis("Standard Deviation", color_codes);
+        var bubbleSeries = myChart.addSeries(null, dimple.plot.bubble);
+        myChart.addLegend(900, 1, 1300, 20, "right");
+        return bubbleSeries;
+    }
+
 
     // raw_student_data[i] - data for ith student
     // raw_student_data[i][j] - all the data(mean, variance, scores) for ith student for the jth criteria
