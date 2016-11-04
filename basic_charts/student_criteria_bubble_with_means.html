@@ -11,18 +11,15 @@
     <h3>Tooltip Chart</h3>
     </div>
     <script type="text/javascript">
-    // Add a simple SVG element to the body of this document
-      var svg = dimple.newSvg("body", 1000, 900);
-      var data;
-
-      // Create a dataset for 7 students and 5 criterions ( 35 avgscores)
-      // studentData.content[0] -> mean scores for 0th student across all criteria
-      // studentData.content[0][2] -> mean scores for 0th student for the 2nd criterion.
-     var studentData = {
+    
+    // Create a dataset for 7 students and 5 criterions ( 35 avgscores)
+    // studentData.content[0] -> mean scores for 0th student across all criteria
+    // studentData.content[0][2] -> mean scores for 0th student for the 2nd criterion.
+    var studentData = {
 
         "x_labels" : ["Criterion 1", "Criterion 2", "Criterion 3", "Criterion 4","Criterion 5" ],
         "y_labels" : ["Student1", "Student2", "Student3", "Student4", "Student5", "Student6", "Student7"],
-        "z_labels" : [ "r1", "r2", "r3", "r4"],
+        "links" : [ "/Student1.html", "/Student2.html", "/Student3.html", "/Student4.html"],
         "configuration":{
             "is_mean_user_provided" : false,
             "color_scheme":{
@@ -39,64 +36,73 @@
         
         "content" :[
             [ 
-                {"mean_score" : 50, "variance" : 217.5, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 45, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 1, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 67, "variance" : 23986.799999999996, "scores" :[{"score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 0, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 34, "variance" : 44624.85, "scores" :[{"score": 19, "comment" : "", "reviewer_name" : "" }, { "score": 9, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 53, "variance" : 88406.30000000002, "scores" :[{"score": 6, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }]},
+                {"mean_score" : 50, "variance" : 217.5, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"mean_score" : 45, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student2" }, { "score": 1, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"mean_score" : 67, "variance" : 23986.799999999996, "scores" :[{"score": 100, "comment" : "", "reviewer_name" : "Student2" }, { "score": 0, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"mean_score" : 34, "variance" : 44624.85, "scores" :[{"score": 19, "comment" : "", "reviewer_name" : "Student2" }, { "score": 9, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"mean_score" : 53, "variance" : 88406.30000000002, "scores" :[{"score": 6, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student5" }]},
             ], 
             [
-                {"mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 85, "comment" : "", "reviewer_name" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 4, "variance" : 278073, "scores" :[{"score": 89, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 34, "variance" : 161152.5, "scores" :[{"score": 40, "comment" : "", "reviewer_name" : "" }, { "score": 35, "comment" : "", "reviewer_name" : "" }, { "score": 32, "comment" : "", "reviewer_name" : "" }, { "score": 28, "comment" : "", "reviewer_name" : ""}]},
-                {"mean_score" : 2, "variance" : 278073, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""} ]},
-                {"mean_score" : 80, "variance" : 278073, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "" }, { "score": 9, "comment" : "", "reviewer_name" : "" }, { "score": 13, "comment" : "", "reviewer_name" : "" }, { "score": 8, "comment" : "", "reviewer_name" : ""} ]}
+                {"mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 85, "comment" : "", "reviewer_name" : "Student5", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "Student4"}, { "score": 90, "comment" : "", "reviewer_name" : "Student1" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }]},
+                {"mean_score" : 4, "variance" : 278073, "scores" :[{"score": 89, "comment" : "", "reviewer_name" : "Student5" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4" }, { "score": 90, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }]},
+                {"mean_score" : 34, "variance" : 161152.5, "scores" :[{"score": 40, "comment" : "", "reviewer_name" : "Student5" }, { "score": 35, "comment" : "", "reviewer_name" : "Student4" }, { "score": 32, "comment" : "", "reviewer_name" : "Student1" }, { "score": 28, "comment" : "", "reviewer_name" : "Student3"}]},
+                {"mean_score" : 2, "variance" : 278073, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student5" }, { "score": 90, "comment" : "", "reviewer_name" : "Student4" }, { "score": 100, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student3"} ]},
+                {"mean_score" : 80, "variance" : 278073, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "Student5" }, { "score": 9, "comment" : "", "reviewer_name" : "Student4" }, { "score": 13, "comment" : "", "reviewer_name" : "Student1" }, { "score": 8, "comment" : "", "reviewer_name" : "Student3"} ]}
             ],
             [
-                {"mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 30, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" },  { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 80, "variance" : 161152.5,"scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""} ]},
-                {"mean_score" : 90, "variance" : 278073, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""} ]},
-                {"mean_score" : 5, "variance" : 278073, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""} ]}
+                {"mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student6" }, { "score": 100, "comment" : "", "reviewer_name" : "Student7" }]},
+                {"mean_score" : 30, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" },  { "score": 90, "comment" : "", "reviewer_name" : "Student6" }, { "score": 100, "comment" : "", "reviewer_name" : "Student7" }]},
+                {"mean_score" : 80, "variance" : 161152.5,"scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student6" }, { "score": 85, "comment" : "", "reviewer_name" : "Student7"} ]},
+                {"mean_score" : 90, "variance" : 278073, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 100, "comment" : "", "reviewer_name" : "Student6" }, { "score": 85, "comment" : "", "reviewer_name" : "Student7"} ]},
+                {"mean_score" : 5, "variance" : 278073, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 100, "comment" : "", "reviewer_name" : "Student6" }, { "score": 85, "comment" : "", "reviewer_name" : "Student7"} ]}
             ],
             [
-                {"mean_score" : 10, "variance" : 161152.5, "scores" :[{"score": 1, "comment" : "", "reviewer_name" : "" }, { "score": 8, "comment" : "", "reviewer_name" : "" }, { "score": 9, "comment" : "", "reviewer_name" : "" }, { "score": 10, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 45, "comment" : "", "reviewer_name" : "" }, { "score": 55, "comment" : "", "reviewer_name" : "" }, { "score": 50, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 0, "variance" : 161152.5, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 95, "comment" : "", "reviewer_name" : "" }, { "score": 89, "comment" : "", "reviewer_name" : "" }, { "score": 75, "comment" : "", "reviewer_name" : ""}]},
-                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 67, "comment" : "", "reviewer_name" : "" }, { "score": 99, "comment" : "", "reviewer_name" : "" }, { "score": 25, "comment" : "", "reviewer_name" : ""} ]},
-                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 89, "comment" : "", "reviewer_name" : "" }, { "score": 92, "comment" : "", "reviewer_name" : "" }, { "score": 75, "comment" : "", "reviewer_name" : ""} ]}
+                {"mean_score" : 10, "variance" : 161152.5, "scores" :[{"score": 1, "comment" : "", "reviewer_name" : "Student1" }, { "score": 8, "comment" : "", "reviewer_name" : "Student2" }, { "score": 9, "comment" : "", "reviewer_name" : "Student3" }, { "score": 10, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 45, "comment" : "", "reviewer_name" : "Student2" }, { "score": 55, "comment" : "", "reviewer_name" : "Student3" }, { "score": 50, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"mean_score" : 0, "variance" : 161152.5, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 95, "comment" : "", "reviewer_name" : "Student2" }, { "score": 89, "comment" : "", "reviewer_name" : "Student3" }, { "score": 75, "comment" : "", "reviewer_name" : "Student5"}]},
+                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 67, "comment" : "", "reviewer_name" : "Student2" }, { "score": 99, "comment" : "", "reviewer_name" : "Student3" }, { "score": 25, "comment" : "", "reviewer_name" : "Student5"} ]},
+                {"mean_score" : 0, "variance" : 278073, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 89, "comment" : "", "reviewer_name" : "Student2" }, { "score": 92, "comment" : "", "reviewer_name" : "Student3" }, { "score": 75, "comment" : "", "reviewer_name" : "Student5"} ]}
             ],
             [
-                {"mean_score" : 5, "variance" : 161152.5, "scores" :[{"score": 6, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 5, "variance" : 278073 ,"scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 0, "variance" : 161152.5, "scores" :[{"score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""}]},
-                {"mean_score" : 45, "variance" : 278073, "scores" :[{"score": 9, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""}]},
-                {"mean_score" : 100, "variance" : 278073, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""}]}
+                {"mean_score" : 5, "variance" : 161152.5, "scores" :[{"score": 6, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student6" }, { "score": 100, "comment" : "", "reviewer_name" : "Student7" }]},
+                {"mean_score" : 5, "variance" : 278073 ,"scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student6" }, { "score": 100, "comment" : "", "reviewer_name" : "Student7" }]},
+                {"mean_score" : 0, "variance" : 161152.5, "scores" :[{"score": 100, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student6" }, { "score": 85, "comment" : "", "reviewer_name" : "Student7"}]},
+                {"mean_score" : 45, "variance" : 278073, "scores" :[{"score": 9, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student6" }, { "score": 85, "comment" : "", "reviewer_name" : "Student7"}]},
+                {"mean_score" : 100, "variance" : 278073, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student6" }, { "score": 85, "comment" : "", "reviewer_name" : "Student7"}]}
             ],
             [ 
-                {"mean_score" : 50, "variance" : 217.5, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 50, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 50, "variance" : 23986.799999999996, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""}]},
-                {"mean_score" : 50, "variance" : 44624.85, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""} ]},
-                {"mean_score" : 50, "variance" : 88406.30000000002, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""}]},
+                {"mean_score" : 50, "variance" : 217.5, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4" }]},
+                {"mean_score" : 50, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4" }]},
+                {"mean_score" : 50, "variance" : 23986.799999999996, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}]},
+                {"mean_score" : 50, "variance" : 44624.85, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"} ]},
+                {"mean_score" : 50, "variance" : 88406.30000000002, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}]},
             ], 
             [ 
-                {"mean_score" : 50, "variance" : 217.5, "scores":[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 50, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }]},
-                {"mean_score" : 50, "variance" : 23986.799999999996, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""} ]},
-                {"mean_score" : 50, "variance" : 44624.85, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""}]},
-                {"mean_score" : 50, "variance" : 88406.30000000002, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "" }, { "score": 100, "comment" : "", "reviewer_name" : "" }, { "score": 85, "comment" : "", "reviewer_name" : ""}]},
+                {"mean_score" : 50, "variance" : 217.5, "scores":[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4" }]},
+                {"mean_score" : 50, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4"}]},
+                {"mean_score" : 50, "variance" : 23986.799999999996, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"} ]},
+                {"mean_score" : 50, "variance" : 44624.85, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}]},
+                {"mean_score" : 50, "variance" : 88406.30000000002, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}]},
             ]
         ]
     };
 
+    // Add a simple SVG element to the body of this document
+    var svg = dimple.newSvg("body", 1000, 900);
+    var data;
     var x_labels = [] ;
     var y_labels = [] ;
     var content = [] ;
     var processed_student_data = [] ;
-    // var processed_reviewer_data = [];
     var processed_student_data_for_bar_chart = [] ;
     var is_mean_user_provided = studentData.configuration.is_mean_user_provided;
+
+    // The main chart
+    var myChart = null;
+    // The chart to show in a tooltip
+    var tipChart = null;
+    // The other popup shapes
+    var popup = null;
 
     d3.json("data/crude_data.json", function(data){
         
@@ -105,12 +111,11 @@
         content = studentData.content;
         processed_student_data = processRawStudentData();
         
-        // The main chart
-        var myChart = new dimple.chart(svg, processed_student_data);
+        myChart = new dimple.chart(svg, processed_student_data);
         var bubbleSeries = configureMainChart(myChart);
 
         // Handle the leave event - overriding the default behaviour
-        bubbleSeries.addEventHandler("mouseup", onMouseUp);
+        bubbleSeries.addEventHandler("mousemove", onMouseMove);
 
         // Handle the click event - overriding the default behaviour
         bubbleSeries.addEventHandler("click", onMouseClick);
@@ -138,35 +143,31 @@
         y.title = "Students" ;
         y.fontSize = studentData.configuration.font_size;
         y.fontFamily = studentData.configuration.font_family;
-        var z = myChart.addMeasureAxis("z", "Mean Of Scores");
+        // Size of the bubble
+        var z = myChart.addMeasureAxis("z", "Standard Deviation");
 
         var color_codes = configureColors();
-        var colorAxis = myChart.addColorAxis("Standard Deviation", color_codes);
+        var colorAxis = myChart.addColorAxis("Mean Of Scores", color_codes);
         var bubbleSeries = myChart.addSeries(null, dimple.plot.bubble);
         myChart.addLegend(900, 1, 1300, 20, "right");
         return bubbleSeries;
     }
 
 
-    function onMouseUp(e) {
-            // Remove the chart
-            if (tipChart !== null) {
-              tipChart._group.remove();
-            }
-            // Remove the popup
-            if (popup !== null) {
-              popup.remove();
-            }
+    function onMouseMove(e) {
+        // Remove the chart
+        if (tipChart !== null) {
+          tipChart._group.remove();
+        }
+        // Remove the popup
+        if (popup !== null) {
+          popup.remove();
+        }
     }
 
 
     function onMouseClick(e){
-
-        // The chart to show in a tooltip
-        var tipChart = null;
-
-        // The other popup shapes
-        var popup = null;
+        // debugger;
 
         processed_student_data_for_bar_chart = processRawStudentDataForBarChart();
 
@@ -314,6 +315,7 @@
                 }
             }
         }
+        // debugger;
         return processed_student_data_for_bar_chart;
     }
 
