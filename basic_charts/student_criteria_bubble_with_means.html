@@ -43,8 +43,8 @@
                 "min_radius" : "-0.5", 
                 "max_radius" : "0.5"
             },
-            "font_family" : "",
-            "font_size" : "12px"
+            "font_family" : "sans-serif",
+            "font_size" : "16px"
         },
         
         "content" :[
@@ -130,8 +130,8 @@
         var bubbleSeries = configureMainChart(myChart);
 
         // Handle the leave event - overriding the default behaviour
-        // mousemove
-        bubbleSeries.addEventHandler("mouseUp", onMouseMove);
+        // mousemove, mouseUp
+        bubbleSeries.addEventHandler("mousemove", onMouseMove);
 
         // Handle the click event - overriding the default behaviour
         bubbleSeries.addEventHandler("click", onMouseClick);
@@ -180,6 +180,8 @@
         if (popup !== null) {
           popup.remove();
         }
+
+        d3.selectAll("circle").style("opacity",1);
     }
 
 
@@ -196,8 +198,8 @@
             stroke = e.selectedShape.attr("stroke");
             
         // Set the size and position of the popup
-        var width = 150,
-            height = 100,
+        var width = 500,
+            height = 300,
             x = (cx + r + width + 10 < svg.attr("width") ?
                   cx + r + 10 :
                   cx - r - width - 20);
@@ -245,9 +247,13 @@
         // Create a new mini chart of scores given by different Reviewers
         tipChart = new dimple.chart(svg,  clickData);
         tipChart.setBounds(x + 10, y + 30, width - 10, height - 40);
-        tipChart.addCategoryAxis("x", "Reviewer").hidden = false;
-        tipChart.addMeasureAxis("y", "Score").hidden = true;
-        
+        var x_tipchart = tipChart.addCategoryAxis("x", "Reviewer");
+        x_tipchart.hidden = false;
+        x_tipchart.title = "Reviewers";
+        var y_tipchart = tipChart.addMeasureAxis("y", "Score") ;
+        y_tipchart.hidden = false;
+        y_tipchart.title = "Scores";
+
         // Add a bar series, this can be changed to a line, area or bubble
         // by changing the plot parameter accordingly.
         var popUpSeries = tipChart.addSeries("SelectedSeries", dimple.plot.bar);
@@ -260,6 +266,7 @@
         
         // Draw the mini chart
         tipChart.draw(); 
+        d3.selectAll("circle").style("opacity",0.1);
 
     }
 
@@ -324,6 +331,7 @@
                     row["Criterion"] = studentData.x_labels[j].label_name;
                     row["Reviewer"] = raw_student_data[i][j].scores[k].reviewer_name;
                     row["Score"] = raw_student_data[i][j].scores[k].score;
+                    row["Comment"] = raw_student_data[i][j].scores[k].comment;
                     processed_student_data_for_bar_chart.push(row);
                 }
             }
@@ -351,23 +359,26 @@
         // Select the x-labels
         var iter = 0;
         d3.selectAll(".dimple-axis-x .dimple-custom-axis-label").each(function(i){
-            if( !d3.select(".dimple-axis-x .dimple-custom-axis-label").classed("selected"))
-                d3.select(".dimple-axis-x .dimple-custom-axis-label").html("<a href='" + x_urls[iter] + "'>" + i + "</a>").attr("class", "selected");
+            if( !d3.select(".dimple-axis-x .dimple-custom-axis-label").classed("selected-label"))
+                d3.select(".dimple-axis-x .dimple-custom-axis-label").html("<a href='" + x_urls[iter] + "'>" + i + "</a>").attr("class", "selected-label");
             iter++;
         });
 
          // Select the y-labels
         var iter = 0;
         d3.selectAll(".dimple-axis-y .dimple-custom-axis-label").each(function(i){
-            if( !d3.select(".dimple-axis-y .dimple-custom-axis-label").classed("selected"))
-                d3.select(".dimple-axis-y .dimple-custom-axis-label").html("<a href='" + y_urls[iter] + "'>" + i + "</a>").attr("class", "selected");
+            if( !d3.select(".dimple-axis-y .dimple-custom-axis-label").classed("selected-label"))
+                d3.select(".dimple-axis-y .dimple-custom-axis-label").html("<a href='" + y_urls[iter] + "'>" + i + "</a>").attr("class", "selected-label");
             iter++;
         });
 
 
+        d3.selectAll(".selected-label")
+            .style("font-family", "sans-serif")
+            .style("font-size", 14)
     }
 
-     function setXLabels(){
+    function setXLabels(){
         for( var i = 0; i < studentData.x_labels.length; i++){
             x_labels.push(studentData.x_labels[i].label_name);
         }
