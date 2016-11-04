@@ -108,115 +108,21 @@
         // The main chart
         var myChart = new dimple.chart(svg, processed_student_data);
         var bubbleSeries = configureMainChart(myChart);
-             // processed_reviewer_data = processRawReviewerData();
-        processed_student_data_for_bar_chart = processRawStudentDataForBarChart();
-        debugger;
-
-        // The chart to show in a tooltip
-        var tipChart = null;
-        // The other popup shapes
-        var popup = null;
-        // Position the main chart
-       
 
         // Handle the leave event - overriding the default behaviour
-        bubbleSeries.addEventHandler("mouseup", function(e) {
-            // Remove the chart
-            if (tipChart !== null) {
-              tipChart._group.remove();
-            }
-            // Remove the popup
-            if (popup !== null) {
-              popup.remove();
-            }
-        });
+        bubbleSeries.addEventHandler("mouseup", onMouseUp);
 
         // Handle the click event - overriding the default behaviour
-        bubbleSeries.addEventHandler("click", function(e){
-            // Get the properties of the selected shape
-            var cx = parseFloat(e.selectedShape.attr("cx")),
-                cy = parseFloat(e.selectedShape.attr("cy")),
-                r = parseFloat(e.selectedShape.attr("r")),
-                fill = e.selectedShape.attr("fill"),
-                stroke = e.selectedShape.attr("stroke");
-                
-            // Set the size and position of the popup
-            var width = 150,
-                height = 100,
-                x = (cx + r + width + 10 < svg.attr("width") ?
-                      cx + r + 10 :
-                      cx - r - width - 20);
-                y = (cy - height / 2 < 0 ?
-                      15 :
-                      cy - height / 2);
-                    
-            // Fade the popup fill mixing the shape fill with 80% white
-            var popupFillColor = d3.rgb(
-                        d3.rgb(fill).r + 0.8 * (255 - d3.rgb(fill).r),
-                        d3.rgb(fill).g + 0.8 * (255 - d3.rgb(fill).g),
-                        d3.rgb(fill).b + 0.8 * (255 - d3.rgb(fill).b)
-                    );
-            
-            // Create a group for the popup objects
-            popup = svg.append("g");
-            
-            // Add a rectangle surrounding the chart
-            popup
-              .append("rect")
-              .attr("x", x + 5)
-              .attr("y", y - 5)
-              .attr("width", width)
-              .attr("height", height)
-              .attr("rx", 5)
-              .attr("ry", 5)
-              .style("fill", popupFillColor)
-              .style("stroke", stroke)
-              .style("stroke-width", 2);
-            
-            // Add the series value text
-            popup
-              .append("text")
-              .attr("x", x + 10)
-              .attr("y", y + 10)
-              .text(e.yValue +  ', '+ e.xValue)
-              .style("font-family", "sans-serif")
-              .style("font-size", 6)
-              .style("fill", stroke);
-            
-            // Filter the data for the selected student and criterion
-            var clickData = dimple.filterData(processed_student_data_for_bar_chart, "Criterion", e.xValue);
-            clickData = dimple.filterData(clickData, "Student", e.yValue);
-
-            // Create a new mini chart of scores given by different Reviewers
-            tipChart = new dimple.chart(svg,  clickData);
-            tipChart.setBounds(x + 10, y + 30, width - 10, height - 40);
-            tipChart.addCategoryAxis("x", "Reviewer").hidden = false;
-            tipChart.addMeasureAxis("y", "Score").hidden = true;
-            
-            // Add a bar series, this can be changed to a line, area or bubble
-            // by changing the plot parameter accordingly.
-            var popUpSeries = tipChart.addSeries("SelectedSeries", dimple.plot.bar);
-            
-            // Set the gap to 50% - just a style preference
-            popUpSeries.barGap = 0.5;
-            
-            // Set the color to the stroke color of the selected node
-            tipChart.assignColor("SelectedSeries", stroke, stroke);
-            
-            // Draw the mini chart
-            tipChart.draw(); 
-
-        });
-
-        
+        bubbleSeries.addEventHandler("click", onMouseClick);
 
         // This should be drawn at the very end, when all the events have been called.
         myChart.draw();
 
-        // svg.selectAll("circle")
-        // .attr("opacity", 0.2);
+        svg.selectAll("circle")
+        .attr("opacity", 0.65);
 
     });
+
 
     function configureMainChart(myChart){
 
@@ -241,6 +147,104 @@
         return bubbleSeries;
     }
 
+
+    function onMouseUp(e) {
+            // Remove the chart
+            if (tipChart !== null) {
+              tipChart._group.remove();
+            }
+            // Remove the popup
+            if (popup !== null) {
+              popup.remove();
+            }
+    }
+
+
+    function onMouseClick(e){
+
+        // The chart to show in a tooltip
+        var tipChart = null;
+
+        // The other popup shapes
+        var popup = null;
+
+        processed_student_data_for_bar_chart = processRawStudentDataForBarChart();
+
+        // Position the main chart
+        // Get the properties of the selected shape
+        var cx = parseFloat(e.selectedShape.attr("cx")),
+            cy = parseFloat(e.selectedShape.attr("cy")),
+            r = parseFloat(e.selectedShape.attr("r")),
+            fill = e.selectedShape.attr("fill"),
+            stroke = e.selectedShape.attr("stroke");
+            
+        // Set the size and position of the popup
+        var width = 150,
+            height = 100,
+            x = (cx + r + width + 10 < svg.attr("width") ?
+                  cx + r + 10 :
+                  cx - r - width - 20);
+            y = (cy - height / 2 < 0 ?
+                  15 :
+                  cy - height / 2);
+                
+        // Fade the popup fill mixing the shape fill with 80% white
+        var popupFillColor = d3.rgb(
+                    d3.rgb(fill).r + 0.8 * (255 - d3.rgb(fill).r),
+                    d3.rgb(fill).g + 0.8 * (255 - d3.rgb(fill).g),
+                    d3.rgb(fill).b + 0.8 * (255 - d3.rgb(fill).b)
+        );
+        
+        // Create a group for the popup objects
+        popup = svg.append("g");
+        
+        // Add a rectangle surrounding the chart
+        popup
+          .append("rect")
+          .attr("x", x + 5)
+          .attr("y", y - 5)
+          .attr("width", width)
+          .attr("height", height)
+          .attr("rx", 5)
+          .attr("ry", 5)
+          .style("fill", popupFillColor)
+          .style("stroke", stroke)
+          .style("stroke-width", 2);
+        
+        // Add the series value text
+        popup
+          .append("text")
+          .attr("x", x + 10)
+          .attr("y", y + 10)
+          .text(e.yValue +  ', '+ e.xValue)
+          .style("font-family", "sans-serif")
+          .style("font-size", 6)
+          .style("fill", stroke);
+        
+        // Filter the data for the selected student and criterion
+        var clickData = dimple.filterData(processed_student_data_for_bar_chart, "Criterion", e.xValue);
+        clickData = dimple.filterData(clickData, "Student", e.yValue);
+
+        // Create a new mini chart of scores given by different Reviewers
+        tipChart = new dimple.chart(svg,  clickData);
+        tipChart.setBounds(x + 10, y + 30, width - 10, height - 40);
+        tipChart.addCategoryAxis("x", "Reviewer").hidden = false;
+        tipChart.addMeasureAxis("y", "Score").hidden = true;
+        
+        // Add a bar series, this can be changed to a line, area or bubble
+        // by changing the plot parameter accordingly.
+        var popUpSeries = tipChart.addSeries("SelectedSeries", dimple.plot.bar);
+        
+        // Set the gap to 50% - just a style preference
+        popUpSeries.barGap = 0.3;
+        
+        // Set the color to the stroke color of the selected node
+        tipChart.assignColor("SelectedSeries", stroke, stroke);
+        
+        // Draw the mini chart
+        tipChart.draw(); 
+
+    }
 
     // raw_student_data[i] - data for ith student
     // raw_student_data[i][j] - all the data(mean, variance, scores) for ith student for the jth criteria
@@ -294,6 +298,7 @@
       return processed_student_data;
     }
     
+
     function processRawStudentDataForBarChart(){
         var raw_student_data = studentData.content;
         for( var i = 0 ; i < raw_student_data.length; i++){ // students
@@ -311,6 +316,7 @@
         }
         return processed_student_data_for_bar_chart;
     }
+
 
     function configureColors(){
         var color_scheme = studentData.configuration.color_scheme;
