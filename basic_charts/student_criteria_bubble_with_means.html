@@ -15,29 +15,33 @@
     // Create a dataset for 7 students and 5 criterions ( 35 avgscores)
     // studentData.content[0] -> mean scores for 0th student across all criteria
     // studentData.content[0][2] -> mean scores for 0th student for the 2nd criterion.
+    // green - 120, 70, 45
+    // red- 0, 70, 45
+    // neutral - 60, 70, 45
     var studentData = {
 
         "x_labels" : [
-                        {"label_name" : "Criterion 1", "url" : "/criterion1.html"}, 
-                        {"label_name" : "Criterion 2", "url" : "/criterion2.html"},
-                        {"label_name" : "Criterion 3", "url" : "/criterion3.html"}, 
-                        {"label_name" : "Criterion 4", "url" : "/criterion4.html"},
-                        {"label_name" : "Criterion 5", "url" : "/criterion5.html"} 
+                        {"label_name" : "Criterion 1", "url" : "/reviewer_student.html"}, 
+                        {"label_name" : "Criterion 2", "url" : "/reviewer_student.html"},
+                        {"label_name" : "Criterion 3", "url" : "/reviewer_student.html"}, 
+                        {"label_name" : "Criterion 4", "url" : "/reviewer_student.html"},
+                        {"label_name" : "Criterion 5", "url" : "/reviewer_student.html"} 
                     ],
         "y_labels" : [
-                        {"label_name" : "Student 1", "url" : "/student1.html"}, 
-                        {"label_name" : "Student 2", "url" : "/student2.html"},
-                        {"label_name" : "Student 3", "url" : "/student3.html"}, 
-                        {"label_name" : "Student 4", "url" : "/student4.html"},
-                        {"label_name" : "Student 5", "url" : "/student5.html"},
-                        {"label_name" : "Student 6", "url" : "/student6.html"},
-                        {"label_name" : "Student 7", "url" : "/student7.html"} 
+                        {"label_name" : "Student 1", "url" : "/criteria_reviewer.html"}, 
+                        {"label_name" : "Student 2", "url" : "/criteria_reviewer.html"},
+                        {"label_name" : "Student 3", "url" : "/criteria_reviewer.html"}, 
+                        {"label_name" : "Student 4", "url" : "/criteria_reviewer.html"},
+                        {"label_name" : "Student 5", "url" : "/criteria_reviewer.html"},
+                        {"label_name" : "Student 6", "url" : "/criteria_reviewer.html"},
+                        {"label_name" : "Student 7", "url" : "/criteria_reviewer.html"} 
                     ],
         "configuration":{
             "is_mean_user_provided" : false,
             "color_scheme":{
-            "negative_color" : "#fb2d4f",
-            "positive_color" : "#2d9a4c"
+            "negative_color" : "#c32222",
+            "neutral_color" : "#d9d926",
+            "positive_color" : "#22c322"
             },
             "bubble" : {
                 "min_radius" : "-0.5", 
