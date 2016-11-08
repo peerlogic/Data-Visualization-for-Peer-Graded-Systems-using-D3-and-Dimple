@@ -119,10 +119,8 @@
     var svg_width = 90 + (140 * x_count) + 30; // 20 + 70 + ( 140 * x_count)
 
     // Add a simple SVG element to the body of this document
-    var svg = dimple.newSvg("body", svg_width, svg_height);
-    // var svg = dimple.newSvg("body", 1000, 900);
-
-    debugger;
+    // var svg = dimple.newSvg("body", svg_width, svg_height);
+    var svg = dimple.newSvg("body", 1000, 900);
 
     // The main chart
     var myChart = null;
@@ -225,19 +223,15 @@
             
             // debugger;
         // Set the size and position of the popup
-        var width = 200,
+        var width = 300,
             height = 300,
-            x = (cx + r + width + 10 <= svg.attr("width") ?
+            x = (cx + r + width + 10 < svg.attr("width") ?
                   cx + r + 10 :
                   cx - r - width - 20);
             y = (cy - height / 2 < 0 ?
                   15 :
                   cy - height / 2);
-            debugger;
-        // var width = 200,
-        //     height = 300,
-        //     x = 100,
-        //     y = 200;
+
 
         // Fade the popup fill mixing the shape fill with 80% white
         var popupFillColor = d3.rgb(
