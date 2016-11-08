@@ -104,8 +104,6 @@
         ]
     };
 
-    // Add a simple SVG element to the body of this document
-    var svg = dimple.newSvg("body", 1000, 900);
     var data;
     var x_labels = [] ;
     var y_labels = [] ;
@@ -115,6 +113,16 @@
     var processed_student_data = [] ;
     var processed_student_data_for_bar_chart = [] ;
     var is_mean_user_provided = studentData.configuration.is_mean_user_provided;
+    var x_count = getNumberOfXCoordinates();
+    var y_count = getNumberOfYCoordinates();
+    var svg_height = 42 + ( y_count * 70) + 30 ; // 22.06 + 18.75 + ( 65.71 * y_count)
+    var svg_width = 90 + (140 * x_count) + 30; // 20 + 70 + ( 140 * x_count)
+
+    // Add a simple SVG element to the body of this document
+    var svg = dimple.newSvg("body", svg_width, svg_height);
+    // var svg = dimple.newSvg("body", 1000, 900);
+
+    debugger;
 
     // The main chart
     var myChart = null;
@@ -174,6 +182,20 @@
         return bubbleSeries;
     }
 
+    function getNumberOfXCoordinates(){
+    
+        for( var i = 0; i < studentData.content.length; i++ ){ //students
+            for( var j = 0; j < studentData.content[i].length; j++ );
+        }
+        return j;
+    }
+
+
+    function getNumberOfYCoordinates(){
+    
+        for( var i = 0; i < studentData.content.length; i++ );
+        return i;
+    }
 
     function onMouseMove(e) {
         // Remove the chart
@@ -201,17 +223,22 @@
             fill = e.selectedShape.attr("fill"),
             stroke = e.selectedShape.attr("stroke");
             
-        //TODO
+            // debugger;
         // Set the size and position of the popup
-        var width = 500,
+        var width = 200,
             height = 300,
-            x = (cx + r + width + 10 < svg.attr("width") ?
+            x = (cx + r + width + 10 <= svg.attr("width") ?
                   cx + r + 10 :
                   cx - r - width - 20);
             y = (cy - height / 2 < 0 ?
                   15 :
                   cy - height / 2);
-                
+            debugger;
+        // var width = 200,
+        //     height = 300,
+        //     x = 100,
+        //     y = 200;
+
         // Fade the popup fill mixing the shape fill with 80% white
         var popupFillColor = d3.rgb(
                     d3.rgb(fill).r + 0.8 * (255 - d3.rgb(fill).r),
@@ -327,7 +354,9 @@
 
     function processRawStudentDataForBarChart(){
         var raw_student_data = studentData.content;
+        
         for( var i = 0 ; i < raw_student_data.length; i++){ // students
+
             for( var j =0 ; j< raw_student_data[i].length; j++){
 
                 for( var k =0 ; k < raw_student_data[i][j].scores.length; k++){
