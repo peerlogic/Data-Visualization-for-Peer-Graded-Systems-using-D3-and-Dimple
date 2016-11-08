@@ -60,7 +60,7 @@
                 {"weighted_mean_score" : 53, "variance" : 88406.30000000002, "scores" :[{"score": 6, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student5" }]},
             ], 
             [
-                {"weighted_mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 85, "comment" : "", "reviewer_name" : "Student5", "reviewer_name" : "" }, { "score": 90, "comment" : "", "reviewer_name" : "Student4"}, { "score": 90, "comment" : "", "reviewer_name" : "Student1" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }]},
+                {"weighted_mean_score" : 50, "variance" : 161152.5, "scores" :[{"score": 85, "comment" : "", "reviewer_name" : "Student5" }, { "score": 90, "comment" : "", "reviewer_name" : "Student4"}, { "score": 90, "comment" : "", "reviewer_name" : "Student1" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }]},
                 {"weighted_mean_score" : 4, "variance" : 278073, "scores" :[{"score": 89, "comment" : "", "reviewer_name" : "Student5" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4" }, { "score": 90, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }]},
                 {"weighted_mean_score" : 34, "variance" : 161152.5, "scores" :[{"score": 40, "comment" : "", "reviewer_name" : "Student5" }, { "score": 35, "comment" : "", "reviewer_name" : "Student4" }, { "score": 32, "comment" : "", "reviewer_name" : "Student1" }, { "score": 28, "comment" : "", "reviewer_name" : "Student3"}]},
                 {"weighted_mean_score" : 2, "variance" : 278073, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student5" }, { "score": 90, "comment" : "", "reviewer_name" : "Student4" }, { "score": 100, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student3"} ]},
@@ -141,7 +141,7 @@
 
         // Handle the leave event - overriding the default behaviour
         // mousemove, mouseUp
-        bubbleSeries.addEventHandler("mousemove", onMouseMove);
+        bubbleSeries.addEventHandler("mouseUp", onMouseMove);
 
         // Handle the click event - overriding the default behaviour
         bubbleSeries.addEventHandler("click", onMouseClick);
@@ -221,9 +221,8 @@
             fill = e.selectedShape.attr("fill"),
             stroke = e.selectedShape.attr("stroke");
             
-            // debugger;
         // Set the size and position of the popup
-        var width = 300,
+        var width = 250,
             height = 300,
             x = (cx + r + width + 10 < svg.attr("width") ?
                   cx + r + 10 :
@@ -293,7 +292,8 @@
         // Draw the mini chart
         tipChart.draw(); 
         d3.selectAll("circle").style("opacity",0.1);
-
+        // d3.selectAll(".dimple-axis").style("opacity",0.1);
+        // d3.selectAll(".dimple-title").style("opacity",0.1);
     }
 
     // raw_student_data[i] - data for ith student
