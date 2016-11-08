@@ -141,7 +141,7 @@
 
         // Handle the leave event - overriding the default behaviour
         // mousemove, mouseUp
-        bubbleSeries.addEventHandler("mouseUp", onMouseMove);
+        bubbleSeries.addEventHandler("mousemove", onMouseMove);
 
         // Handle the click event - overriding the default behaviour
         bubbleSeries.addEventHandler("click", onMouseClick);
@@ -158,7 +158,7 @@
 
         setXurls();
         setYurls();
-        myChart.setBounds(100, 40, 680, 450);
+        myChart.setBounds(150, 40, 680, 450);
       
         // Add the main chart axes
         var x = myChart.addCategoryAxis("x", "Criterion");
@@ -404,6 +404,8 @@
         d3.selectAll(".selected-label")
             .style("font-family", "sans-serif")
             .style("font-size", 14)
+            .style("color", "blue")
+            .style("text-decoration", "underline");
     }
 
     function setXLabels(){
