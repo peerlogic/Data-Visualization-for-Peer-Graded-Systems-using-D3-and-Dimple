@@ -37,7 +37,7 @@
                         {"label_name" : "Student 7", "url" : "/criteria_reviewer.html"} 
                     ],
         "configuration":{
-            "is_mean_user_provided" : false,
+            "is_mean_user_provided" : true,
             "color_scheme":{
             "negative_color" : "#22c322",
             "neutral_color" : "#d9d926",
@@ -344,10 +344,9 @@
                     }
                     std_deviation = Math.sqrt(sum_of_diff_squares/review_count);
                     row["Standard Deviation"] = std_deviation;
-                    processed_student_data.push(row);
 
                     } // end of else
-                           
+                processed_student_data.push(row);                              
             } // end of criteria for loop
         } // end of students for loop.
       return processed_student_data;
@@ -394,7 +393,6 @@
 
 
     function linkify(){
-
         // Select the x-labels
         var iter = 0;
         d3.selectAll(".dimple-axis-x .dimple-custom-axis-label").each(function(i){
