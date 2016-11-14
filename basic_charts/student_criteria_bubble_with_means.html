@@ -5,6 +5,8 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="colorbrewer.js"></script>
+    <link rel="stylesheet" href="colorbrewer.css">
   </head>
   <body>
     <div>
@@ -15,9 +17,7 @@
     // Create a dataset for 7 students and 5 criterions ( 35 avgscores)
     // studentData.content[0] -> mean scores for 0th student across all criteria
     // studentData.content[0][2] -> mean scores for 0th student for the 2nd criterion.
-    // green - 120, 70, 45
-    // red- 0, 70, 45
-    // neutral - 60, 70, 45
+
     var studentData = {
 
         "x_labels" : [
@@ -43,18 +43,20 @@
             "neutral_color" : "#d9d926",
             "positive_color" : "#c32222"
             },
+            "svg-height" : "",
+            "svg-width" : "",
             "bubble" : {
                 "min_radius" : "-0.5", 
                 "max_radius" : "0.5"
             },
             "font_family" : "sans-serif",
-            "font_size" : "16px"
+            "font_size" : "18px"
         },
         
         "content" :[
             [ 
-                {"weighted_mean_score" : 50, "variance" : 217.5, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student5" }]},
-                {"weighted_mean_score" : 45, "variance" : 9154.799999999997, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student2" }, { "score": 1, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"weighted_mean_score" : 50, "variance" : 217, "scores" :[{"score": 10, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student5" }]},
+                {"weighted_mean_score" : 45, "variance" : 915, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student2" }, { "score": 1, "comment" : "", "reviewer_name" : "Student5" }]},
                 {"weighted_mean_score" : 67, "variance" : 23986.799999999996, "scores" :[{"score": 100, "comment" : "", "reviewer_name" : "Student2" }, { "score": 0, "comment" : "", "reviewer_name" : "Student5" }]},
                 {"weighted_mean_score" : 34, "variance" : 44624.85, "scores" :[{"score": 19, "comment" : "", "reviewer_name" : "Student2" }, { "score": 9, "comment" : "", "reviewer_name" : "Student5" }]},
                 {"weighted_mean_score" : 53, "variance" : 88406.30000000002, "scores" :[{"score": 6, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student5" }]},
@@ -120,7 +122,7 @@
 
     // Add a simple SVG element to the body of this document
     // var svg = dimple.newSvg("body", svg_width, svg_height);
-    var svg = dimple.newSvg("body", 1000, 900);
+    var svg = dimple.newSvg("body", 1000, 700);
 
     // The main chart
     var myChart = null;
@@ -141,7 +143,7 @@
 
         // Handle the leave event - overriding the default behaviour
         // mousemove, mouseUp
-        bubbleSeries.addEventHandler("mousemove", onMouseMove);
+        bubbleSeries.addEventHandler("mouseUp", onMouseMove);
 
         // Handle the click event - overriding the default behaviour
         bubbleSeries.addEventHandler("click", onMouseClick);
@@ -149,8 +151,6 @@
         // This should be drawn at the very end, when all the events have been called.
         myChart.draw();
         linkify();
-        // svg.selectAll("circle")
-        // .attr("opacity", 0.65);
 
     });
 
@@ -159,7 +159,7 @@
         setXurls();
         setYurls();
         myChart.setBounds(150, 40, 680, 450);
-      
+
         // Add the main chart axes
         var x = myChart.addCategoryAxis("x", "Criterion");
         x.title = "Criteria";
@@ -170,13 +170,20 @@
         y.title = "Students" ;
         y.fontSize = studentData.configuration.font_size;
         y.fontFamily = studentData.configuration.font_family;
+        
         // Size of the bubble
         var z = myChart.addMeasureAxis("z", "Standard Deviation");
+        
+        var z = d3.scale.ordinal()
+        .domain(["foo", "bar", "baz"])
+        .range(colorbrewer.RdBu[9]);
 
         var color_codes = configureColors();
         var colorAxis = myChart.addColorAxis("Mean Of Scores", color_codes);
         var bubbleSeries = myChart.addSeries(null, dimple.plot.bubble);
-        myChart.addLegend(900, 1, 1300, 20, "right");
+        
+        myChart.addLegend(0, 0, 20, 20, "left", bubbleSeries);
+        
         return bubbleSeries;
     }
 
@@ -222,7 +229,7 @@
             stroke = e.selectedShape.attr("stroke");
             
         // Set the size and position of the popup
-        var width = 250,
+        var width = 150,
             height = 300,
             x = (cx + r + width + 10 < svg.attr("width") ?
                   cx + r + 10 :
@@ -264,7 +271,7 @@
           .style("font-family", "sans-serif")
           .style("font-size", 6)
           .style("fill", stroke);
-        
+
         // Filter the data for the selected student and criterion
         var clickData = dimple.filterData(processed_student_data_for_bar_chart, "Criterion", e.xValue);
         clickData = dimple.filterData(clickData, "Student", e.yValue);
@@ -276,7 +283,7 @@
         x_tipchart.hidden = false;
         x_tipchart.title = "Reviewers";
         var y_tipchart = tipChart.addMeasureAxis("y", "Score") ;
-        y_tipchart.hidden = false;
+        y_tipchart.hidden = true;
         y_tipchart.title = "Scores";
 
         // Add a bar series, this can be changed to a line, area or bubble
@@ -291,9 +298,10 @@
         
         // Draw the mini chart
         tipChart.draw(); 
+        // Blurring out the remaining graph when bubble is clicked.
         d3.selectAll("circle").style("opacity",0.1);
-        // d3.selectAll(".dimple-axis").style("opacity",0.1);
-        // d3.selectAll(".dimple-title").style("opacity",0.1);
+        d3.selectAll(".selected-label").style("opacity",0.1);
+        d3.selectAll(".dimple-title").style("opacity",0.1);
     }
 
     // raw_student_data[i] - data for ith student
@@ -374,10 +382,13 @@
         var negative_color_code = color_scheme.negative_color;
         var neutral_color_code = color_scheme.neutral_color;
 
-        var color_codes = [] ;
-        color_codes.push(positive_color_code);
-        color_codes.push(neutral_color_code);
-        color_codes.push(negative_color_code);
+        // color_codes.push(positive_color_code);
+        // color_codes.push(neutral_color_code);
+        // color_codes.push(negative_color_code);
+        // color_codes.push();
+
+        // Followed RdYlGn[11] : Refer https://github.com/d3/d3/blob/v3.5.17/lib/colorbrewer/colorbrewer.js ( line 226)
+        var color_codes = ["#a50026","#d73027","#f46d43","#fdae61","#fee08b","#ffffbf","#d9ef8b","#a6d96a","#66bd63","#1a9850","#006837"] ;
         return color_codes ;
     }
 
@@ -400,12 +411,14 @@
             iter++;
         });
 
-
-        d3.selectAll(".selected-label")
-            .style("font-family", "sans-serif")
+        // Make the links look different.
+        d3.selectAll(".selected-label a")
+            .style("font-family", "Times New Roman")
             .style("font-size", 14)
-            .style("color", "blue")
+            .style("fill", "#0f8239")
+            .style("opacity", 0.8)
             .style("text-decoration", "underline");
+
     }
 
     function setXLabels(){
@@ -433,8 +446,6 @@
             y_urls.push(studentData.y_labels[i].url);
         }
     }
-
-
     </script>
   </body>
 </html>
