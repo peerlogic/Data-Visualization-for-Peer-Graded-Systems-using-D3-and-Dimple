@@ -35,11 +35,7 @@
                     ],
         "configuration":{
             "is_mean_user_provided" : true,
-            "color_scheme":{
-            "negative_color" : "#22c322",
-            "neutral_color" : "#d9d926",
-            "positive_color" : "#c32222"
-            },
+            "color_scheme": ["#a50026","#d73027","#f46d43","#fdae61","#fee08b","#ffffbf","#d9ef8b","#a6d96a","#66bd63","#1a9850","#006837"],
             "svg-height" : "",
             "svg-width" : "",
             "bubble" : {
@@ -94,11 +90,11 @@
                 {"weighted_mean_score" : 50, "variance" : 9000, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}]},
             ], 
             [ 
-                {"weighted_mean_score" : 54, "variance" : 217.5, "scores":[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4" }]},
-                {"weighted_mean_score" : 58, "variance" : 988, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4"}]},
-                {"weighted_mean_score" : 62, "variance" : 6000, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"} ]},
-                {"weighted_mean_score" : 66, "variance" : 800.85, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}]},
-                {"weighted_mean_score" : 70, "variance" : 5000, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}]},
+                {"weighted_mean_score" : 54, "variance" : 217.5, "scores":[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4" },{ "score": 90, "comment" : "", "reviewer_name" : "Student13" }, { "score": 100, "comment" : "", "reviewer_name" : "Student10" }]},
+                {"weighted_mean_score" : 58, "variance" : 988, "scores" :[{"score": 0, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 100, "comment" : "", "reviewer_name" : "Student4"}, { "score": 90, "comment" : "", "reviewer_name" : "Student13" }, { "score": 100, "comment" : "", "reviewer_name" : "Student10"}]},
+                {"weighted_mean_score" : 62, "variance" : 6000, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 85, "comment" : "", "reviewer_name" : "Student2" }, { "score": 90, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"} , { "score": 90, "comment" : "", "reviewer_name" : "Student13" }, { "score": 100, "comment" : "", "reviewer_name" : "Student10"}]},
+                {"weighted_mean_score" : 66, "variance" : 800.85, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}, { "score": 90, "comment" : "", "reviewer_name" : "Student13" }, { "score": 100, "comment" : "", "reviewer_name" : "Student10"}]},
+                {"weighted_mean_score" : 70, "variance" : 5000, "scores" :[{"score": 60, "comment" : "", "reviewer_name" : "Student1" }, { "score": 90, "comment" : "", "reviewer_name" : "Student2" }, { "score": 100, "comment" : "", "reviewer_name" : "Student3" }, { "score": 85, "comment" : "", "reviewer_name" : "Student4"}, { "score": 90, "comment" : "", "reviewer_name" : "Student13" }, { "score": 100, "comment" : "", "reviewer_name" : "Student10"}]},
             ]
         ]
     };
@@ -263,7 +259,7 @@
           .attr("y", y + 10)
           .text(e.yValue +  ', '+ e.xValue)
           .style("font-family", "sans-serif")
-          .style("font-size", 6)
+          .style("font-size", 14)
           .style("fill", stroke);
 
         var selected_xValue = e.xValue;
@@ -379,18 +375,8 @@
 
 
     function configureColors(){
-        var color_scheme = studentData.configuration.color_scheme;
-        var positive_color_code = color_scheme.positive_color;
-        var negative_color_code = color_scheme.negative_color;
-        var neutral_color_code = color_scheme.neutral_color;
-
-        // color_codes.push(positive_color_code);
-        // color_codes.push(neutral_color_code);
-        // color_codes.push(negative_color_code);
-        // color_codes.push();
-
         // Followed RdYlGn[11] : Refer https://github.com/d3/d3/blob/v3.5.17/lib/colorbrewer/colorbrewer.js ( line 226)
-        var color_codes = ["#a50026","#d73027","#f46d43","#fdae61","#fee08b","#ffffbf","#d9ef8b","#a6d96a","#66bd63","#1a9850","#006837"] ;
+        var color_codes = studentData.configuration.color_scheme;
         return color_codes ;
     }
 
