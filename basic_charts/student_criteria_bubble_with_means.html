@@ -202,6 +202,7 @@
           popup.remove();
         }
         
+
         d3.selectAll("circle").style("opacity", 1);
         d3.selectAll(".selected-label").style("opacity", 1);
         d3.selectAll(".dimple-title").style("opacity", 1);
@@ -252,16 +253,27 @@
           .style("stroke", stroke)
           .style("stroke-width", 2);
         
-        // Add the series value text
+        // Add the series value text inside the popup
         popup
           .append("text")
-          .attr("x", x + 10)
-          .attr("y", y + 10)
-          .text(e.yValue +  ', '+ e.xValue)
-          .style("font-family", "sans-serif")
-          .style("font-size", 14)
+          .attr("class", "popup-text")
           .style("fill", stroke);
 
+
+        popup.selectAll("popup-text")
+          .data([e.yValue , e.xValue])
+          .enter()
+          .append("text")
+            .attr("x", x + 10)
+            .attr("y", function (d, i) { return (y + 8) + ( i * 14); })
+            .style("font-family", "sans-serif")
+            .style("font-size", 11)
+            .style("font-weight", "bold")
+            .style("color", "Black")
+            .text(function (d) { return d; });
+
+
+          // debugger;
         var selected_xValue = e.xValue;
         var selected_yValue = e.yValue;
 
@@ -269,7 +281,6 @@
 
         // Filter the data for the selected student and criterion
         var clickData = dimple.filterData(processed_student_data_for_bar_chart, "Criterion", e.xValue);
-        console.log(e);
         clickData = dimple.filterData(clickData, "Student", e.yValue);
 
         // Create a new mini chart of scores given by different Reviewers
