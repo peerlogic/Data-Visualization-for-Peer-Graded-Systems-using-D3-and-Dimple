@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="colorbrewer.css">
   </head>
   <body>
+
+    <p class="right-align">Sort by 
+        <select name="sorts" onchange="onSelectionOfSort(this.value)">
+            <option value="Student" selected>Student</option>
+            <option value="Mean Of Scores">Mean Score</option>
+            <option value="Standard Deviation">standard deviation</option>
+        </select>
+    </p>
     <script type="text/javascript">
     
     // Create a dataset for 7 students and 5 criterions ( 35 avgscores)
@@ -106,6 +114,7 @@
     var y_urls = [] ;
     var content = [] ;
     var processed_student_data = [] ;
+    var sortable = [] ;
     var processed_student_data_for_bar_chart = [] ;
     var is_mean_user_provided = studentData.configuration.is_mean_user_provided;
     var x_count = getNumberOfXCoordinates();
@@ -443,6 +452,22 @@
             y_urls.push(studentData.y_labels[i].url);
         }
     }
+
+    function sortResults(prop, asc) {
+
+        var sorted_processed_student_data = processed_student_data.sort(function(a, b) {
+        if (asc) {
+            return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+        } else {
+            return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+        }
+        });
+    }
+
+    function onSelectionOfSort(val){
+        sortResults(val, true);
+    }
+    
     </script>
   </body>
 </html>
