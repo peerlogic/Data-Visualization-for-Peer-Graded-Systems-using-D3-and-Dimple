@@ -1,0 +1,183 @@
+{
+
+	"x_label" : ["Criterion 1", "Criterion 2", "Criterion 3", "Criterion 4","Criterion 5", "Criterion 6", "Criterion 7"],
+	"y_label" : ["Student 1", "Student 2", "Student 3", "Student 4","Student 5","Student 6", "Student 7"],
+	"color_scheme": {
+        "default_color": "#F4D03F",
+        "default_value": 0,
+        "ranges": [{
+            "minimum": -1,
+            "maximum": -0.5,
+            "color": "#FAA4A4"
+        }, {
+            "minimum": -0.5,
+            "maximum": 0,
+            "color": "#F50404"
+        }, {
+            "minimum": 0,
+            "maximum": 0.5,
+            "color": "#A4FAA4"
+        }, {
+            "minimum": 0.5,
+            "maximum": 1,
+            "color": "#07FA07"
+        }]
+    },
+
+	"content": [
+        [{
+            "value": 6.0,
+            "text": "review content 1"
+        }, {
+            "value": 8.5,
+            "text": "review content 2"
+        }, {
+            "value": 9.0,
+            "text": "review content 3"
+        }, {
+            "value": 10.0,
+            "text": "review content 4"
+        }, {
+            "value": 8.5,
+            "text": "review content 5"
+        }, {
+            "value": 10.0,
+            "text": "review content 6"
+        }, {
+            "value": 9.0,
+            "text": "review content 7"
+        }],
+        [{
+            "value": 2.0,
+            "text": "review content 1"
+        }, {
+            "value": 2.5,
+            "text": "review content 2"
+        }, {
+            "value": 1.0,
+            "text": "review content 3"
+        }, {
+            "value": 4.0,
+            "text": "review content 4"
+        }, {
+            "value": 2.3,
+            "text": "review content 5"
+        }, {
+            "value": 9.7,
+            "text": "review content 6"
+        }, {
+            "value": 1.0,
+            "text": "review content 7"
+        }],
+        [{
+            "value": 0.9,
+            "text": "review content 1"
+        }, {
+            "value": 0.6,
+            "text": "review content 2"
+        }, {
+            "value": 1.0,
+            "text": "review content 3"
+        }, {
+            "value": 2.0,
+            "text": "review content 4"
+        }, {
+            "value": 5.2,
+            "text": "review content 5"
+        }, {
+            "value": 4.7,
+            "text": "review content 6"
+        }, {
+            "value": 5.6,
+            "text": "review content 7"
+        }],
+        [{
+            "value": 7.8,
+            "text": "review content 1"
+        }, {
+            "value": 6.5,
+            "text": "review content 2"
+        }, {
+            "value": 7.5,
+            "text": "review content 3"
+        }, {
+            "value": 4.9,
+            "text": "review content 4"
+        }, {
+            "value": 2.5,
+            "text": "review content 5"
+        }, {
+            "value": 7.5,
+            "text": "review content 6"
+        }, {
+            "value": 3.4,
+            "text": "review content 7"
+        }],
+        [{
+            "value": 6.8,
+            "text": "review content 1"
+        }, {
+            "value": 4.6,
+            "text": "review content 2"
+        }, {
+            "value": 1.0,
+            "text": "review content 3"
+        }, {
+            "value": 6.7,
+            "text": "review content 4"
+        }, {
+            "value": 8.4,
+            "text": "review content 5"
+        }, {
+            "value": 7.5,
+            "text": "review content 6"
+        }, {
+            "value": 6.0,
+            "text": "review content 7"
+        }],
+        [{
+            "value": 3.9,
+            "text": "review content 1"
+        }, {
+            "value": 4.5,
+            "text": "review content 2"
+        }, {
+            "value": 7.8,
+            "text": "review content 3"
+        }, {
+            "value": 9.3,
+            "text": "review content 4"
+        }, {
+            "value": 6.5,
+            "text": "review content 5"
+        }, {
+            "value": 7.5,
+            "text": "review content 6"
+        }, {
+            "value": 4.0,
+            "text": "review content 7"
+        }],
+        [{
+            "value": 3.0,
+            "text": "review content 1"
+        }, {
+            "value": 3.5,
+            "text": "review content 2"
+        }, {
+            "value": 1.6,
+            "text": "review content 3"
+        }, {
+            "value": 7.9,
+            "text": "review content 4"
+        }, {
+            "value": 9.2,
+            "text": "review content 5"
+        }, {
+            "value": 7.5,
+            "text": "review content 6"
+        }, {
+            "value": 6.0,
+            "text": "review content 7"
+        }]
+    ]
+}
