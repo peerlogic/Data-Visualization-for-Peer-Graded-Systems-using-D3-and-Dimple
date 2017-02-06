@@ -45,16 +45,16 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
 - The content is a 3 dimensional array, the outermost dimension represents <b><em>reviewers</em></b>, the intermediate represents the <b><em>submission number</em></b>,  while the innermost dimension represents the <b><em>student</em></b>. 
 
 - For example,
-
-     -- scores by 0th reviewer for all submissions.
-     '''reviewerData.content[0];'''
+'''javascript
+      // scores by 0th reviewer for all submissions.
+     reviewerData.content[0];
    
-     scores by 0th reviewer for the 2nd submission.
-     '''reviewerData.content[0][2]; '''
+//      scores by 0th reviewer for the 2nd submission.
+     reviewerData.content[0][2]; 
      
      // scores by 0th reviewer for the 2nd submission for the 4th student.
      reviewerData.content[0][1][4];
-     
+     '''
 - In general, we can say...
 
     // Data for ith review
