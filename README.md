@@ -35,7 +35,7 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
   - It is a 3 dimensional array structure.
   - The outer most dimension represents the students across all the criteria.
   - The intermediate dimension represents the criteria. 
-  - And finally, the inner most dimension denotes the scores awarded by the reviewers to the given student. The input can either be the mean score & variance, ( i.e. if "is_mean_user_provided" is set to true), in which case, "weighted_mean_score" denotes the weighted mean for all scores and the "variance". On the other hand, if "is_mean_user_provided" is set to false, then an array of "scores" need to be provided, each element of the scores array, has the score value, the reviewer Id who has awarded the score and the comments, if any.
+  - And finally, the inner most dimension denotes the scores awarded by the reviewers to the given student. The input can either be the mean score & variance, ( i.e. if <em>"is_mean_user_provided"</em> is set to true), in which case, <em>"weighted_mean_score"</em> denotes the weighted mean for all scores and the "variance". On the other hand, if <em>"is_mean_user_provided"</em> is set to false, then an array of <em>"scores"</em> need to be provided, each element of the scores array, has the score value, the reviewer Id who has awarded the score and the comments, if any.
     
 
 ### reviewer_student.html
@@ -43,16 +43,17 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
 
 #### Content Structure
 - The content is a 3 dimensional array, the outermost dimension represents <em>reviewers</em>, the intermediate represents the <em>submission number</em>,  while the innermost dimension represents the <em>student</em>. 
+
 - For example,
 
      // scores by 0th reviewer for all submissions.
-     '''reviewerData.content[0]; '''
+     reviewerData.content[0];
    
      // scores by 0th reviewer for the 2nd submission.
-     '''reviewerData.content[0][2]; '''
+     reviewerData.content[0][2];
      
      // scores by 0th reviewer for the 2nd submission for the 4th student.
-     '''reviewerData.content[0][1][4]; '''
+     reviewerData.content[0][1][4];
      
 - In general, we can say...
 
