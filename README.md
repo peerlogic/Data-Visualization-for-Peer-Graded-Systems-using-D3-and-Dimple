@@ -9,7 +9,7 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
 ## JSON Structure
 
 ### Bubble Chart for Student v/s Criteria with means and variance
- {
+''' {
     "x_labels" : [
                         {"label_name" : "", "url" : ""}
                   ],
@@ -46,7 +46,7 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
                  ]
       ]
   }
- 
+ '''
  
   * <b><em>x_label</em></b> denotes the entity represented on the x-axis, its label being specified by 'label_name' and the URL is given by 'url'. Upon clicking this URL link the user is redirected to another visualization of, say, Scores received on that particular criterion by different students for each stage of submission of an assignment. 
   
