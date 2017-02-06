@@ -17,8 +17,6 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
      "y_labels" : [
                         {"label_name" : "", "url" : ""}  
                   ],
-'''
-''' 
      "configuration":
               {
                     "is_mean_user_provided" : true,
@@ -32,8 +30,7 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
                     "font_family" : "sans-serif",
                     "font_size" : "18px"
                 },
- '''
- '''
+
    "content" :[
                   [ 
                       {
@@ -51,8 +48,7 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
       ]
   }
  
- '''
-  
+ 
   * <b><em>x_label</em></b> denotes the entity represented on the x-axis, its label being specified by 'label_name' and the URL is given by 'url'. Upon clicking this URL link the user is redirected to another visualization of, say, Scores received on that particular criterion by different students for each stage of submission of an assignment. 
   
   
