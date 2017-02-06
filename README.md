@@ -17,7 +17,8 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
      "y_labels" : [
                         {"label_name" : "", "url" : ""}  
                   ],
-
+'''
+''' 
      "configuration":
               {
                     "is_mean_user_provided" : true,
@@ -31,7 +32,8 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
                     "font_family" : "sans-serif",
                     "font_size" : "18px"
                 },
-        
+ '''
+ '''
    "content" :[
                   [ 
                       {
@@ -57,13 +59,13 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
   * <b><em>y_label</em></b> denotes the entity represented on the x-axis, its label being specified by 'label_name' and the URL is given by 'url'.
   
   * <b><em>configuration</em></b> denotes all the kinds of settings that the user is allowed to configure. This includes the 
-  ** <b><em>color_scheme</em></b>, the color code used to display variation from good to bad.
-  ** <b><em>svg-height</em></b> denotes the height of the page, in pixels, take up by the visualization.
-  ** <b><em>svg-width</em></b> denotes the width of the page, in pixels, take up by the visualization.
-  ** <b><em>font-family</em></b> denotes the font family used to display the labels and text in the visualization.
-  ** <b><em>font-size</em></b> denotes the size of the font used to display the labels and text in the visualization.
-  ** <b><em>bubble</em></b> has the display configuration for bubble in the bubble chart, w.r.t. its minimum and maximum radius.
-  ** <b><em>is_mean_user_provided</em></b> it is a flag to specify if the input given to the visualization are individual scores ( whose mean and variance are calculated programtically), or if the user provides mean scores and variance. Note that, here the mean can be a weighted means, calculated as per some algorithm.
+  * <b><em>color_scheme</em></b>, the color code used to display variation from good to bad.
+  * <b><em>svg-height</em></b> denotes the height of the page, in pixels, take up by the visualization.
+  * <b><em>svg-width</em></b> denotes the width of the page, in pixels, take up by the visualization.
+  * <b><em>font-family</em></b> denotes the font family used to display the labels and text in the visualization.
+  * <b><em>font-size</em></b> denotes the size of the font used to display the labels and text in the visualization.
+  * <b><em>bubble</em></b> has the display configuration for bubble in the bubble chart, w.r.t. its minimum and maximum radius.
+  * <b><em>is_mean_user_provided</em></b> it is a flag to specify if the input given to the visualization are individual scores ( whose mean and variance are calculated programtically), or if the user provides mean scores and variance. Note that, here the mean can be a weighted means, calculated as per some algorithm.
   
   * <b><em>content</em></b>
     This denotes all the content to be visualized.
