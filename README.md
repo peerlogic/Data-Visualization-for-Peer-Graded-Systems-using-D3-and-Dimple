@@ -44,32 +44,30 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
 #### Content Structure
 - The content is a 3 dimensional array, the outermost dimension represents <em>reviewers</em>, the intermediate represents the <em>submission number</em>,  while the innermost dimension represents the <em>student</em>. 
 - For example,
-'''
+
      // scores by 0th reviewer for all submissions.
-     reviewerData.content[0];
+     '''reviewerData.content[0]; '''
    
      // scores by 0th reviewer for the 2nd submission.
-     reviewerData.content[0][2];
+     '''reviewerData.content[0][2]; '''
      
      // scores by 0th reviewer for the 2nd submission for the 4th student.
-     reviewerData.content[0][1][4];  
-'''
+     '''reviewerData.content[0][1][4]; '''
+     
 - In general, we can say...
 
-'''
     // Data for ith review
-       reviewerData.content[i] ;
+     '''reviewerData.content[i] ;'''
       
     // All the data(scores, comments) for ith review for the jth criteria.
-       reviewerData.content[i][j] ;
+     '''reviewerData.content[i][j] ;'''
        
     // The score for the ith review for the jth criteria
-       reviewerData.content[i][j].score ;
+     '''reviewerData.content[i][j].score ; '''
        
     // Comment given by the ith reviewer for the jth criteria.
-       reviewerData.content[i][j].comment ;
+     '''reviewerData.content[i][j].comment ;'''
 
-'''
 - Each score consists of the actual score value and the comments received, if any.
 
 
@@ -80,26 +78,24 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
  - The content is a 2 dimensional array, the outer dimension represents <em>criteria</em> , while the inner dimension represents the <em>student</em>. The size of each bubble denotes the actual <em>score</em> values.
     
  - For example, we have..
- '''
-    // scores for 0th student across all criteria.
-       reviewerData.content[0];
-    // scores for 0th student for the 2nd criterion.
-       reviewerData.content[0][2];   
- '''
- - In General,
  
- '''
-    // data for ith review
-       raw_reviewer_data[i];
+       ''' // scores for 0th student across all criteria.'''
+       ''' reviewerData.content[0];'''
+       ''' // scores for 0th student for the 2nd criterion.'''
+       ''' reviewerData.content[0][2];   '''
+ 
+ - In General,
+
+    ''' // Data for ith review '''
+    ''' raw_reviewer_data[i];'''
+    ''' // All the data(scores, comments) for ith review for the jth criteria'''
+    ''' raw_reviewer_data[i][j];'''
        
-    // All the data(scores, comments) for ith review for the jth criteria
-       raw_reviewer_data[i][j];
+    ''' // The score for the ith review for the jth criteria'''
+    ''' raw_reviewer_data[i][j].score;
        
-    // The score for the ith review for the jth criteria
-       raw_reviewer_data[i][j].score;
-       
-    // Comment given by the ith reviewer for the jth criteria.
-       raw_reviewer_data[i][j].comment;
+    ''' // Comment given by the ith reviewer for the jth criteria. '''
+    ''' raw_reviewer_data[i][j].comment; '''
   
 ### References 
 * https://d3js.org/
