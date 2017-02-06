@@ -55,9 +55,10 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
       // scores by 0th reviewer for the 2nd submission for the 4th student.
       reviewerData.content[0][1][4];
 </pre>
+
 - In general, we can say...
 
-<code>
+<pre>
       // Data for ith review
       reviewerData.content[i] ;
       
@@ -69,7 +70,7 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
        
      // Comment given by the ith reviewer for the jth criteria.
       reviewerData.content[i][j].comment ;
-</code>
+</pre>
 - Each score consists of the actual score value and the comments received, if any.
 
 
@@ -77,17 +78,18 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
 - This visualization opens when the user clicks on any of the links on the y-axis labels. In this visualization, the criteria are represented on the x-axis and the reviewer ids are represented on the y-axis. 
 
 #### Content Structure
- - The content is a 2 dimensional array, the outer dimension represents <em>criteria</em> , while the inner dimension represents the <em>student</em>. The size of each bubble denotes the actual <em>score</em> values.
+- The content is a 2 dimensional array, the outer dimension represents <em><b>criteria</b></em>, while the inner dimension represents the <em><b>student</b></em>. The size of each bubble denotes the actual <em><b>score</b></em> values.
     
  - For example, we have..
  
+  <pre>
         // scores for 0th student across all criteria.
         reviewerData.content[0];
         // scores for 0th student for the 2nd criterion.
         reviewerData.content[0][2];   
- 
+ </pre>
  - In General,
-
+ <pre>
        // Data for ith review 
        raw_reviewer_data[i];
        // All the data(scores, comments) for ith review for the jth criteria
@@ -98,7 +100,7 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
 
        // Comment given by the ith reviewer for the jth criteria.
        raw_reviewer_data[i][j].comment;
-  
+ </pre> 
 ### References 
 * https://d3js.org/
 * https://github.com/PMSI-AlignAlytics/dimple/wiki
