@@ -45,34 +45,31 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
 - The content is a 3 dimensional array, the outermost dimension represents <b><em>reviewers</em></b>, the intermediate represents the <b><em>submission number</em></b>,  while the innermost dimension represents the <b><em>student</em></b>. 
 
 - For example,
-'''javascript
-     // scores by 0th reviewer for all submissions.
-     reviewerData.content[0];
- '''
- 
-//      scores by 0th reviewer for the 2nd submission.
- '''javascript
- reviewerData.content[0][2]; 
-     '''
-     '''javascript
+<pre>
+      // scores by 0th reviewer for all submissions.
+      reviewerData.content[0];
 
-     // scores by 0th reviewer for the 2nd submission for the 4th student.
-     reviewerData.content[0][1][4];
-     '''
+      // scores by 0th reviewer for the 2nd submission.
+      reviewerData.content[0][2]; 
+
+      // scores by 0th reviewer for the 2nd submission for the 4th student.
+      reviewerData.content[0][1][4];
+</pre>
 - In general, we can say...
 
-    // Data for ith review
-     '''reviewerData.content[i] ;'''
+<code>
+      // Data for ith review
+      reviewerData.content[i] ;
       
-    // All the data(scores, comments) for ith review for the jth criteria.
-     '''reviewerData.content[i][j] ;'''
+      // All the data(scores, comments) for ith review for the jth criteria.
+      reviewerData.content[i][j] ;
        
-    // The score for the ith review for the jth criteria
-     '''reviewerData.content[i][j].score ; '''
+      // The score for the ith review for the jth criteria
+      reviewerData.content[i][j].score ; 
        
-    // Comment given by the ith reviewer for the jth criteria.
-     '''reviewerData.content[i][j].comment ;'''
-
+     // Comment given by the ith reviewer for the jth criteria.
+      reviewerData.content[i][j].comment ;
+</code>
 - Each score consists of the actual score value and the comments received, if any.
 
 
@@ -84,23 +81,23 @@ A bubble chart can be used to represent 4 dimensions, x-axis, y-axis, color of t
     
  - For example, we have..
  
-       ''' // scores for 0th student across all criteria.'''
-       ''' reviewerData.content[0];'''
-       ''' // scores for 0th student for the 2nd criterion.'''
-       ''' reviewerData.content[0][2];   '''
+        // scores for 0th student across all criteria.
+        reviewerData.content[0];
+        // scores for 0th student for the 2nd criterion.
+        reviewerData.content[0][2];   
  
  - In General,
 
-    ''' // Data for ith review '''
-    ''' raw_reviewer_data[i];'''
-    ''' // All the data(scores, comments) for ith review for the jth criteria'''
-    ''' raw_reviewer_data[i][j];'''
-       
-    ''' // The score for the ith review for the jth criteria'''
-    ''' raw_reviewer_data[i][j].score;
-       
-    ''' // Comment given by the ith reviewer for the jth criteria. '''
-    ''' raw_reviewer_data[i][j].comment; '''
+       // Data for ith review 
+       raw_reviewer_data[i];
+       // All the data(scores, comments) for ith review for the jth criteria
+       raw_reviewer_data[i][j];
+
+       // The score for the ith review for the jth criteria
+       raw_reviewer_data[i][j].score;
+
+       // Comment given by the ith reviewer for the jth criteria.
+       raw_reviewer_data[i][j].comment;
   
 ### References 
 * https://d3js.org/
